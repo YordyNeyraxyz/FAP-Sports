@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportes FAP</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        /* Estilos del encabezado */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        
+        .logo h1 {
+            margin-left: 10px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        nav {
+            margin-left: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: #333;
+        }
+        
+        /* Estilos de las pestañas */
+        .tabs {
+            display: flex;
+            margin: 20px 0 0 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #555;
+        }
+        
+        .tab.active {
+            color: #4a148c;
+            border-bottom: 3px solid #4a148c;
+            font-weight: bold;
+        }
+        
+        /* Estilos del contenido principal */
+        .container {
+            padding: 20px;
+        }
+        
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .header-actions h2 {
+            color: #333;
+        }
+        
+        .btn-add {
+            background-color: #4a148c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn-add span {
+            margin-left: 5px;
+            font-size: 1.2rem;
+        }
+        
+        /* Estilos de la barra de búsqueda */
+        .search-bar {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        /* Estilos de la tabla */
+        .table-container {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-delete, .btn-edit {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .btn-delete:hover {
+            color: #e53935;
+        }
+        
+        .btn-edit:hover {
+            color: #4a148c;
+        }
+        
+        /* Estilos de la paginación */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .pagination button {
+            width: 35px;
+            height: 35px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .pagination button.active {
+            background-color: #4a148c;
+            color: white;
+            border-color: #4a148c;
+        }
+        
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            color: #333;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #4a148c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Estilos para el contenido de No Asociados */
+        .no-asociados-content {
+            display: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .empty-state p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Modal de No Asociado */
+        .no-asociado-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .no-asociado-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 425px;
+        }
+        
+        .no-asociado-modal-header {
+            margin-bottom: 15px;
+        }
+        
+        .no-asociado-modal-header h2 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .no-asociado-modal-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .no-asociado-modal-footer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        /* Modal de confirmación para eliminar */
+        .confirm-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .confirm-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .confirm-modal-header {
+            margin-bottom: 15px;
+        }
+        
+        .confirm-modal-header h2 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .confirm-modal-header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .confirm-modal-footer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <div class="logo">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-1TLXnU98OpHVOWmcEz7uIT351IhR2W.png" alt="Logo FAP">
+            <h1>Deportes FAP</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Partidos</a></li>
+                <li><a href="#">Jugadores</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Contactanos</a></li>
+                <li><a href="#">Inscribir</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Pestañas -->
+    <div class="tabs">
+        <div class="tab active" id="tab-asociados">Asociados</div>
+        <div class="tab" id="tab-no-asociados">No asociados</div>
+    </div>
+    
+    <!-- Contenido principal - Asociados -->
+    <div class="container" id="asociados-content">
+        <div class="header-actions">
+            <h2>Asociados</h2>
+            <button class="btn-add" onclick="openRegistroModal()">Agregar <span>+</span></button>
+        </div>
+        
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Buscar Asociado" id="search-asociados" onkeyup="filtrarAsociados()">
+        </div>
+        
+        <!-- Tabla de asociados -->
+        <div class="table-container">
+            <table id="tabla-asociados">
+                <thead>
+                    <tr>
+                        <th>Sociétés</th>
+                        <th>Pays</th>
+                        <th>Villes</th>
+                        <th>Branches</th>
+                        <th>E-mail</th>
+                        <th>Téléphone</th>
+                        <th>Site web</th>
+                        <th>Commissaire respo.</th>
+                        <th>Nombre de contrôle</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-id="1">
+                        <td>Sit.</td>
+                        <td>Cameroun</td>
+                        <td>Douala</td>
+                        <td>VIE</td>
+                        <td>contact@sit.cm</td>
+                        <td>(+237) 233-333-333</td>
+                        <td>www.gropamai.cm</td>
+                        <td>Phasellus aliquet ac sed.</td>
+                        <td>02</td>
+                        <td class="actions">
+                            <button class="btn-delete" onclick="confirmarEliminar(1)">🗑️</button>
+                            <button class="btn-edit" onclick="editarAsociado(1)">✏️</button>
+                        </td>
+                    </tr>
+                    <tr data-id="2">
+                        <td>Sit.</td>
+                        <td>Cameroun</td>
+                        <td>Douala</td>
+                        <td>VIE</td>
+                        <td>contact@sit.cm</td>
+                        <td>(+237) 233-333-333</td>
+                        <td>www.gropamai.cm</td>
+                        <td>Phasellus aliquet ac sed.</td>
+                        <td>02</td>
+                        <td class="actions">
+                            <button class="btn-delete" onclick="confirmarEliminar(2)">🗑️</button>
+                            <button class="btn-edit" onclick="editarAsociado(2)">✏️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Paginación -->
+        <div class="pagination">
+            <button>&lt;</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>8</button>
+            <button>9</button>
+            <button>10</button>
+            <button>&gt;</button>
+        </div>
+    </div>
+    
+    <!-- Contenido principal - No Asociados -->
+    <div class="container no-asociados-content" id="no-asociados-content">
+        <div class="header-actions">
+            <h2>No asociados</h2>
+            <button class="btn-add" onclick="openRegistroModal()">Agregar <span>+</span></button>
+        </div>
+        
+        <!-- Barra de búsqueda -->
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Buscar No Asociado" id="search-no-asociados">
+        </div>
+        
+        <!-- Contenido vacío para No Asociados -->
+        <div class="table-container">
+            <div class="empty-state">
+                <p>No existen asociados registrados con ese criterio de búsqueda.</p>
+                <button class="btn-primary" onclick="openRegistroModal()">Registrar nuevo asociado</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de registro -->
+    <div class="modal" id="registroModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Registrar Nuevo Asociado</h2>
+                <button class="close-button" onclick="closeRegistroModal()">&times;</button>
+            </div>
+            <form id="registro-form">
+                <input type="hidden" id="asociado-id" value="">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" id="nombres" name="nombres">
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                        <input type="text" id="fechaNacimiento" name="fechaNacimiento" value="2022-06-21 14:30:25">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateDelivrance">Date de délivrance</label>
+                        <input type="text" id="dateDelivrance" name="dateDelivrance" value="2022-06-21 14:30:25">
+                    </div>
+                    <div class="form-group">
+                        <label for="dni">N° de Documento (DNI)</label>
+                        <input type="text" id="dni" name="dni">
+                    </div>
+                    <div class="form-group">
+                        <label for="promocion">Promocion</label>
+                        <input type="text" id="promocion" name="promocion">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Numéro de telefono</label>
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                    <div class="form-group">
+                        <label for="decada">Decada</label>
+                        <input type="text" id="decada" name="decada">
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo Electronico</label>
+                        <input type="email" id="correo" name="correo">
+                    </div>
+                    <div class="form-group">
+                        <label for="rol">Rol</label>
+                        <select id="rol" name="rol">
+                            <option value="">Seleccionar rol</option>
+                            <option value="admin">Administrador</option>
+                            <option value="jugador">Jugador</option>
+                            <option value="entrenador">Entrenador</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-primary" id="btn-form-submit" onclick="submitRegistroForm()">Añadir</button>
+                    <button type="button" class="btn-secondary" onclick="closeRegistroModal()">Anular</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal de No Asociado -->
+    <div class="no-asociado-modal" id="noAsociadoModal">
+        <div class="no-asociado-modal-content">
+            <div class="no-asociado-modal-header">
+                <h2>No existe el asociado</h2>
+                <p>No se ha encontrado ningún asociado con los criterios de búsqueda. ¿Desea registrar un nuevo asociado?</p>
+            </div>
+            <div class="no-asociado-modal-footer">
+                <button class="btn-primary" onclick="registrarDesdeNoAsociado()">Registrar nuevo</button>
+                <button class="btn-secondary" onclick="closeNoAsociadoModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de confirmación para eliminar -->
+    <div class="confirm-modal" id="confirmModal">
+        <div class="confirm-modal-content">
+            <div class="confirm-modal-header">
+                <h2>Confirmar eliminación</h2>
+                <p>¿Está seguro que desea eliminar este asociado? Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="confirm-modal-footer">
+                <button class="btn-primary" style="background-color: #e53935;" id="btn-confirmar-eliminar">Eliminar</button>
+                <button class="btn-secondary" onclick="closeConfirmModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Datos de ejemplo para asociados
+        const asociados = [
+            {
+                id: 1,
+                societe: "Sit.",
+                pays: "Cameroun",
+                ville: "Douala",
+                branche: "VIE",
+                email: "contact@sit.cm",
+                telephone: "(+237) 233-333-333",
+                siteWeb: "www.gropamai.cm",
+                commissaire: "Phasellus aliquet ac sed.",
+                nombreControle: "02",
+                nombres: "Juan",
+                apellidos: "Pérez",
+                dni: "12345678",
+                fechaNacimiento: "2022-06-21 14:30:25",
+                dateDelivrance: "2022-06-21 14:30:25",
+                promocion: "2010",
+                decada: "2010",
+                telefono: "(+237) 233-333-333",
+                correo: "contact@sit.cm",
+                rol: "admin"
+            },
+            {
+                id: 2,
+                societe: "Sit.",
+                pays: "Cameroun",
+                ville: "Douala",
+                branche: "VIE",
+                email: "contact@sit.cm",
+                telephone: "(+237) 233-333-333",
+                siteWeb: "www.gropamai.cm",
+                commissaire: "Phasellus aliquet ac sed.",
+                nombreControle: "02",
+                nombres: "María",
+                apellidos: "González",
+                dni: "87654321",
+                fechaNacimiento: "2022-06-21 14:30:25",
+                dateDelivrance: "2022-06-21 14:30:25",
+                promocion: "2015",
+                decada: "2010",
+                telefono: "(+237) 233-333-333",
+                correo: "contact@sit.cm",
+                rol: "jugador"
+            }
+        ];
+        
+        // Referencias a elementos del DOM
+        const tabAsociados = document.getElementById('tab-asociados');
+        const tabNoAsociados = document.getElementById('tab-no-asociados');
+        const asociadosContent = document.getElementById('asociados-content');
+        const noAsociadosContent = document.getElementById('no-asociados-content');
+        const registroModal = document.getElementById('registroModal');
+        const noAsociadoModal = document.getElementById('noAsociadoModal');
+        const confirmModal = document.getElementById('confirmModal');
+        const registroForm = document.getElementById('registro-form');
+        const modalTitulo = document.getElementById('modal-titulo');
+        const btnFormSubmit = document.getElementById('btn-form-submit');
+        const asociadoIdInput = document.getElementById('asociado-id');
+        const btnConfirmarEliminar = document.getElementById('btn-confirmar-eliminar');
+        
+        // Funciones para manejar las pestañas
+        tabAsociados.addEventListener('click', function() {
+            tabAsociados.classList.add('active');
+            tabNoAsociados.classList.remove('active');
+            asociadosContent.style.display = 'block';
+            noAsociadosContent.style.display = 'none';
+        });
+        
+        tabNoAsociados.addEventListener('click', function() {
+            tabNoAsociados.classList.add('active');
+            tabAsociados.classList.remove('active');
+            noAsociadosContent.style.display = 'block';
+            asociadosContent.style.display = 'none';
+            
+            // Mostrar el modal de No Asociado cuando se hace clic en la pestaña
+            openNoAsociadoModal();
+        });
+        
+        // Funciones para manejar el modal de registro
+        function openRegistroModal(isEditing = false) {
+            if (!isEditing) {
+                // Limpiar el formulario si es un nuevo registro
+                registroForm.reset();
+                asociadoIdInput.value = '';
+                modalTitulo.textContent = 'Registrar Nuevo Asociado';
+                btnFormSubmit.textContent = 'Añadir';
+            }
+            registroModal.style.display = 'block';
+        }
+        
+        function closeRegistroModal() {
+            registroModal.style.display = 'none';
+        }
+        
+        function submitRegistroForm() {
+            // Obtener todos los valores del formulario
+            const formData = {
+                nombres: document.getElementById('nombres').value,
+                apellidos: document.getElementById('apellidos').value,
+                dni: document.getElementById('dni').value,
+                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                dateDelivrance: document.getElementById('dateDelivrance').value,
+                promocion: document.getElementById('promocion').value,
+                decada: document.getElementById('decada').value,
+                telefono: document.getElementById('telefono').value,
+                correo: document.getElementById('correo').value,
+                rol: document.getElementById('rol').value
+            };
+            
+            const asociadoId = asociadoIdInput.value;
+            
+            if (asociadoId) {
+                // Estamos editando un asociado existente
+                const index = asociados.findIndex(a => a.id == asociadoId);
+                if (index !== -1) {
+                    // Actualizar los datos del asociado
+                    asociados[index] = { ...asociados[index], ...formData };
+                    alert('Asociado actualizado correctamente');
+                }
+            } else {
+                // Estamos creando un nuevo asociado
+                const newId = asociados.length > 0 ? Math.max(...asociados.map(a => a.id)) + 1 : 1;
+                const newAsociado = {
+                    id: newId,
+                    societe: "Nuevo",
+                    pays: "Perú",
+                    ville: "Lima",
+                    branche: "FAP",
+                    email: formData.correo,
+                    telephone: formData.telefono,
+                    siteWeb: "www.fap.mil.pe",
+                    commissaire: `${formData.nombres} ${formData.apellidos}`,
+                    nombreControle: "01",
+                    ...formData
+                };
+                
+                asociados.push(newAsociado);
+                alert('Asociado agregado correctamente');
+                
+                // Agregar la nueva fila a la tabla
+                const tbody = document.querySelector('#tabla-asociados tbody');
+                const newRow = document.createElement('tr');
+                newRow.setAttribute('data-id', newId);
+                
+                newRow.innerHTML = `
+                    <td>${newAsociado.societe}</td>
+                    <td>${newAsociado.pays}</td>
+                    <td>${newAsociado.ville}</td>
+                    <td>${newAsociado.branche}</td>
+                    <td>${newAsociado.email}</td>
+                    <td>${newAsociado.telephone}</td>
+                    <td>${newAsociado.siteWeb}</td>
+                    <td>${newAsociado.commissaire}</td>
+                    <td>${newAsociado.nombreControle}</td>
+                    <td class="actions">
+                        <button class="btn-delete" onclick="confirmarEliminar(${newId})">🗑️</button>
+                        <button class="btn-edit" onclick="editarAsociado(${newId})">✏️</button>
+                    </td>
+                `;
+                
+                tbody.appendChild(newRow);
+            }
+            
+            closeRegistroModal();
+        }
+        
+        // Función para editar un asociado
+        function editarAsociado(id) {
+            const asociado = asociados.find(a => a.id == id);
+            if (asociado) {
+                // Llenar el formulario con los datos del asociado
+                document.getElementById('nombres').value = asociado.nombres || '';
+                document.getElementById('apellidos').value = asociado.apellidos || '';
+                document.getElementById('dni').value = asociado.dni || '';
+                document.getElementById('fechaNacimiento').value = asociado.fechaNacimiento || '';
+                document.getElementById('dateDelivrance').value = asociado.dateDelivrance || '';
+                document.getElementById('promocion').value = asociado.promocion || '';
+                document.getElementById('decada').value = asociado.decada || '';
+                document.getElementById('telefono').value = asociado.telefono || '';
+                document.getElementById('correo').value = asociado.correo || '';
+                document.getElementById('rol').value = asociado.rol || '';
+                
+                // Establecer el ID del asociado que se está editando
+                asociadoIdInput.value = id;
+                
+                // Cambiar el título y el texto del botón
+                modalTitulo.textContent = 'Editar Asociado';
+                btnFormSubmit.textContent = 'Actualizar';
+                
+                // Abrir el modal
+                openRegistroModal(true);
+            }
+        }
+        
+        // Funciones para manejar la eliminación de asociados
+        function confirmarEliminar(id) {
+            // Guardar el ID del asociado a eliminar en el botón de confirmación
+            btnConfirmarEliminar.setAttribute('data-id', id);
+            
+            // Mostrar el modal de confirmación
+            confirmModal.style.display = 'block';
+            
+            // Configurar el evento click para el botón de confirmar
+            btnConfirmarEliminar.onclick = function() {
+                eliminarAsociado(id);
+                closeConfirmModal();
+            };
+        }
+        
+        function closeConfirmModal() {
+            confirmModal.style.display = 'none';
+        }
+        
+        function eliminarAsociado(id) {
+            // Eliminar el asociado del array
+            const index = asociados.findIndex(a => a.id == id);
+            if (index !== -1) {
+                asociados.splice(index, 1);
+                
+                // Eliminar la fila de la tabla
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                if (row) {
+                    row.remove();
+                }
+                
+                alert('Asociado eliminado correctamente');
+            }
+        }
+        
+        // Funciones para filtrar asociados
+        function filtrarAsociados() {
+            const searchTerm = document.getElementById('search-asociados').value.toLowerCase();
+            const rows = document.querySelectorAll('#tabla-asociados tbody tr');
+            
+            rows.forEach(row => {
+                let found = false;
+                const cells = row.querySelectorAll('td');
+                
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+                
+                row.style.display = found ? '' : 'none';
+            });
+        }
+        
+        // Funciones para manejar el modal de No Asociado
+        function openNoAsociadoModal() {
+            noAsociadoModal.style.display = 'block';
+        }
+        
+        function closeNoAsociadoModal() {
+            noAsociadoModal.style.display = 'none';
+        }
+        
+        function registrarDesdeNoAsociado() {
+            closeNoAsociadoModal();
+            openRegistroModal();
+        }
+        
+        // Cerrar los modales si se hace clic fuera de ellos
+        window.onclick = function(event) {
+            if (event.target == registroModal) {
+                closeRegistroModal();
+            }
+            if (event.target == noAsociadoModal) {
+                closeNoAsociadoModal();
+            }
+            if (event.target == confirmModal) {
+                closeConfirmModal();
+            }
+        }
+        
+        // Inicialización
+        window.onload = function() {
+            // Mostrar la pestaña de Asociados por defecto
+            tabAsociados.click();
+        }
+    </script>
+</body>
+</html>
