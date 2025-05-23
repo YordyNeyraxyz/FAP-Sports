@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Equipos - Deportes FAP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4b0082;
+            border-bottom: 1px solid #3a0065;
+            color: white;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .logo h1 {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        nav {
+            margin-left: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            border-bottom: 2px solid white;
+            padding-bottom: 2px;
+        }
+        
+        /* Container */
+        .container {
+            padding: 30px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        /* Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+        
+        /* Players Section */
+        .players-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #4b0082;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-bar {
+            position: relative;
+            flex: 1;
+            max-width: 300px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: #4b0082;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #4b0082;
+            background: white;
+            color: #4b0082;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #4b0082;
+            color: white;
+        }
+        
+        /* Players Grid */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .player-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .player-card:hover {
+            border-color: #4b0082;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(75, 0, 130, 0.15);
+        }
+        
+        .player-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .player-position {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .position-portero { background: #fef3c7; color: #92400e; }
+        .position-defensa { background: #dbeafe; color: #1e40af; }
+        .position-centrocampista { background: #d1fae5; color: #065f46; }
+        .position-delantero { background: #fee2e2; color: #991b1b; }
+        
+        .team-select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        
+        .team-select:focus {
+            outline: none;
+            border-color: #4b0082;
+        }
+        
+        /* Teams Section */
+        .teams-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .team-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .create-team-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .create-team-btn:hover {
+            background: #059669;
+        }
+        
+        .clear-all-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .clear-all-btn:hover {
+            background: #dc2626;
+        }
+        
+        .teams-container {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .team-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+        }
+        
+        .team-header {
+            background: #4b0082;
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .team-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .team-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .delete-team-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .team-players {
+            padding: 15px;
+        }
+        
+        .team-player {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .team-player-info {
+            flex: 1;
+        }
+        
+        .team-player-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        
+        .team-player-position {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .remove-player-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .empty-team {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        .no-teams {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px 20px;
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4b0082;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .teams-section {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-bar {
+                max-width: none;
+            }
+            
+            .filters {
+                justify-content: center;
+            }
+            
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-P41nJ7XlYBQiJ6lXQSgfraEz3616nl.png" alt="Logo Fuerza Aérea del Perú">
+            <h1>Deportes FAP</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Partidos</a></li>
+                <li><a href="#" class="active">Jugadores</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Contactanos</a></li>
+                <li><a href="#">Inscribir</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">Gestión de Equipos</h1>
+        
+        <div class="main-layout">
+            <!-- Players Section -->
+            <div class="players-section">
+                <h2 class="section-title">Lista de Jugadores</h2>
+                
+                <!-- Controls -->
+                <div class="controls">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" placeholder="Buscar jugador...">
+                    </div>
+                    <div class="filters">
+                        <button class="filter-btn active" data-position="todos">Todos</button>
+                        <button class="filter-btn" data-position="delantero">Delanteros</button>
+                        <button class="filter-btn" data-position="centrocampista">Centrocampistas</button>
+                        <button class="filter-btn" data-position="defensa">Defensas</button>
+                        <button class="filter-btn" data-position="portero">Porteros</button>
+                    </div>
+                </div>
+                
+                <!-- Players Grid -->
+                <div class="players-grid" id="playersGrid">
+                    <!-- Players will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Teams Section -->
+            <div class="teams-section">
+                <h2 class="section-title">Equipos Formados</h2>
+                
+                <div class="team-controls">
+                    <button class="create-team-btn" onclick="createNewTeam()">+ Nuevo Equipo</button>
+                    <button class="clear-all-btn" onclick="clearAllTeams()">Limpiar Todo</button>
+                </div>
+                
+                <div class="teams-container" id="teamsContainer">
+                    <div class="no-teams">No hay equipos creados</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistics Section -->
+        <div class="stats-section" id="statsSection" style="display: none;">
+            <h2 class="section-title">Estadísticas</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTeams">0</div>
+                    <div class="stat-label">Equipos Creados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="assignedPlayers">0</div>
+                    <div class="stat-label">Jugadores Asignados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="availablePlayers">15</div>
+                    <div class="stat-label">Jugadores Disponibles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completeTeams">0</div>
+                    <div class="stat-label">Equipos Completos</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data
+        const players = [
+            { id: 1, firstName: "Carlos", lastName: "Mendoza", position: "Delantero" },
+            { id: 2, firstName: "Luis", lastName: "Rodriguez", position: "Centrocampista" },
+            { id: 3, firstName: "Miguel", lastName: "Torres", position: "Defensa Central" },
+            { id: 4, firstName: "Diego", lastName: "Vargas", position: "Portero" },
+            { id: 5, firstName: "Roberto", lastName: "Silva", position: "Lateral Derecho" },
+            { id: 6, firstName: "Andrés", lastName: "Morales", position: "Mediocampista" },
+            { id: 7, firstName: "Fernando", lastName: "García", position: "Lateral Izquierdo" },
+            { id: 8, firstName: "Javier", lastName: "López", position: "Defensa Central" },
+            { id: 9, firstName: "Ricardo", lastName: "Herrera", position: "Delantero" },
+            { id: 10, firstName: "Pablo", lastName: "Ramírez", position: "Centrocampista" },
+            { id: 11, firstName: "Sebastián", lastName: "Castro", position: "Portero" },
+            { id: 12, firstName: "Mateo", lastName: "Fernández", position: "Lateral Derecho" },
+            { id: 13, firstName: "Alejandro", lastName: "Ruiz", position: "Delantero" },
+            { id: 14, firstName: "Daniel", lastName: "Jiménez", position: "Mediocampista" },
+            { id: 15, firstName: "Gabriel", lastName: "Vega", position: "Defensa Central" }
+        ];
+        
+        let teams = [];
+        let teamCounter = 0;
+        let currentFilter = 'todos';
+        let currentSearch = '';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPlayers();
+            setupEventListeners();
+            updateStats();
+        });
+        
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                currentSearch = e.target.value.toLowerCase();
+                renderPlayers();
+            });
+            
+            // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.position;
+                    renderPlayers();
+                });
+            });
+        }
+        
+        function getPositionClass(position) {
+            if (position.toLowerCase().includes('portero')) return 'position-portero';
+            if (position.toLowerCase().includes('defensa') || position.toLowerCase().includes('lateral')) return 'position-defensa';
+            if (position.toLowerCase().includes('centrocampista') || position.toLowerCase().includes('mediocampista')) return 'position-centrocampista';
+            if (position.toLowerCase().includes('delantero')) return 'position-delantero';
+            return 'position-defensa';
+        }
+        
+        function getAvailablePlayers() {
+            const assignedPlayerIds = teams.flatMap(team => team.players.map(p => p.id));
+            return players.filter(player => !assignedPlayerIds.includes(player.id));
+        }
+        
+        function renderPlayers() {
+            const grid = document.getElementById('playersGrid');
+            const availablePlayers = getAvailablePlayers();
+            
+            const filteredPlayers = availablePlayers.filter(player => {
+                const matchesSearch = 
+                    player.firstName.toLowerCase().includes(currentSearch) ||
+                    player.lastName.toLowerCase().includes(currentSearch) ||
+                    player.position.toLowerCase().includes(currentSearch);
+                
+                const matchesFilter = currentFilter === 'todos' || 
+                    player.position.toLowerCase().includes(currentFilter.toLowerCase());
+                
+                return matchesSearch && matchesFilter;
+            });
+            
+            grid.innerHTML = filteredPlayers.map(player => `
+                <div class="player-card">
+                    <div class="player-name">${player.firstName} ${player.lastName}</div>
+                    <div class="player-position ${getPositionClass(player.position)}">${player.position}</div>
+                    <select class="team-select" id="teamSelect-${player.id}" onchange="addPlayerToTeam(${player.id})">
+                        <option value="">Seleccionar equipo...</option>
+                        ${teams.map(team => `<option value="${team.id}">Equipo ${team.name}</option>`).join('')}
+                    </select>
+                </div>
+            `).join('');
+        }
+        
+        function createNewTeam() {
+            teamCounter++;
+            const newTeam = {
+                id: Date.now(),
+                name: teamCounter,
+                players: []
+            };
+            teams.push(newTeam);
+            renderTeams();
+            renderPlayers(); // Re-render to update dropdowns
+            updateStats();
+        }
+        
+        function addPlayerToTeam(playerId) {
+            const select = document.getElementById(`teamSelect-${playerId}`);
+            const teamId = parseInt(select.value);
+            
+            if (!teamId) return;
+            
+            const player = players.find(p => p.id === playerId);
+            const team = teams.find(t => t.id === teamId);
+            
+            // Check if player is already in this team
+            if (team.players.find(p => p.id === playerId)) {
+                alert('Este jugador ya está en el equipo seleccionado');
+                select.value = '';
+                return;
+            }
+            
+            // Check team limit
+            if (team.players.length >= 11) {
+                alert('El equipo ya tiene 11 jugadores');
+                select.value = '';
+                return;
+            }
+            
+            // Remove player from other teams
+            teams.forEach(t => {
+                t.players = t.players.filter(p => p.id !== playerId);
+            });
+            
+            // Add player to selected team
+            team.players.push(player);
+            
+            renderTeams();
+            renderPlayers();
+            updateStats();
+            select.value = '';
+        }
+        
+        function removePlayerFromTeam(teamId, playerId) {
+            const team = teams.find(t => t.id === teamId);
+            team.players = team.players.filter(p => p.id !== playerId);
+            renderTeams();
+            renderPlayers();
+            updateStats();
+        }
+        
+        function deleteTeam(teamId) {
+            if (confirm('¿Estás seguro de que quieres eliminar este equipo?')) {
+                teams = teams.filter(t => t.id !== teamId);
+                renderTeams();
+                renderPlayers(); // Re-render to update dropdowns
+                updateStats();
+            }
+        }
+        
+        function clearAllTeams() {
+            if (confirm('¿Estás seguro de que quieres eliminar todos los equipos?')) {
+                teams = [];
+                teamCounter = 0;
+                renderTeams();
+                renderPlayers();
+                updateStats();
+            }
+        }
+        
+        function renderTeams() {
+            const container = document.getElementById('teamsContainer');
+            
+            if (teams.length === 0) {
+                container.innerHTML = '<div class="no-teams">No hay equipos creados</div>';
+                return;
+            }
+            
+            container.innerHTML = teams.map(team => `
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-title">Equipo ${team.name}</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="team-count">${team.players.length}/11</div>
+                            <button class="delete-team-btn" onclick="deleteTeam(${team.id})">Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="team-players">
+                        ${team.players.length === 0 ? 
+                            '<div class="empty-team">No hay jugadores en este equipo</div>' :
+                            team.players.map(player => `
+                                <div class="team-player">
+                                    <div class="team-player-info">
+                                        <div class="team-player-name">${player.firstName} ${player.lastName}</div>
+                                        <div class="team-player-position">${player.position}</div>
+                                    </div>
+                                    <button class="remove-player-btn" onclick="removePlayerFromTeam(${team.id}, ${player.id})">×</button>
+                                </div>
+                            `).join('')
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function updateStats() {
+            const totalTeams = teams.length;
+            const assignedPlayers = teams.reduce((acc, team) => acc + team.players.length, 0);
+            const availablePlayers = players.length - assignedPlayers;
+            const completeTeams = teams.filter(team => team.players.length === 11).length;
+            
+            document.getElementById('totalTeams').textContent = totalTeams;
+            document.getElementById('assignedPlayers').textContent = assignedPlayers;
+            document.getElementById('availablePlayers').textContent = availablePlayers;
+            document.getElementById('completeTeams').textContent = completeTeams;
+            
+            // Show stats section if there are teams
+            const statsSection = document.getElementById('statsSection');
+            if (totalTeams > 0) {
+                statsSection.style.display = 'block';
+            } else {
+                statsSection.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
