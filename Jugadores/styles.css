@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  width: 100%;
+  width: 95%;
   padding: 20px 40px;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -21,7 +21,7 @@ header {
 .left-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .logo-header {
@@ -31,10 +31,6 @@ header {
 .titulo-header {
   font-size: 24px;
   color: #333;
-  font-weight: bold;
-}
-
-.logo {
   font-weight: bold;
 }
 
@@ -63,22 +59,27 @@ main {
 }
 
 h2 {
-  margin-top: 2rem;
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
   color: #222;
+}
+
+.group {
+  margin-bottom: 2rem;
 }
 
 .player-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 .player-card {
   text-align: center;
-  border: 1px solid green;
+  border: 2px solid green;
   padding: 1rem;
   border-radius: 5px;
+  background-color: white;
 }
 
 .player-card img {
@@ -86,10 +87,19 @@ h2 {
   height: auto;
   max-height: 180px;
   object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.player-card p {
+  margin: 0.2rem 0;
+}
+
+.player-card strong {
+  font-size: 1rem;
 }
 
 .position {
-  color: green;
+  color: #228B22;
   font-size: 0.9rem;
 }
 
@@ -113,6 +123,6 @@ footer nav a {
 }
 
 footer .redes img {
-    width: 40px;
-    margin: 0 1em;
-  }
+  width: 40px;
+  margin: 0 1em;
+}
