@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicados Oficiales - Deportes FAP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .fap-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #28a745;
+        }
+
+        .login-btn {
+            background: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #218838;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .comunicado-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #28a745;
+        }
+
+        .comunicado-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comunicado-type {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .comunicado-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .comunicado-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .comunicado-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .comunicado-content {
+            padding: 20px;
+        }
+
+        .comunicado-text {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #28a745;
+        }
+
+        .comunicado-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comunicado-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .item-date {
+            font-size: 12px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+                margin: 10px 0;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .comunicado-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-Fa3AxFGiNOwCgC1L5U0yw8wI7h6Vtu.png" alt="Logo Fuerza Aerea del Perú" class="fap-logo">
+                <span>Deportes FAP</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#partidos">Partidos</a></li>
+                <li><a href="#jugadores">Jugadores</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#comunicados" class="active">Comunicados</a></li>
+                <li><a href="#contactanos">Contactanos</a></li>
+            </ul>
+            <button class="login-btn">Iniciar Sesión</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Comunicados Oficiales</h1>
+        <p class="page-subtitle">Información oficial y declaraciones del club</p>
+    </div>
+
+    <main class="container">
+        <div class="main-content">
+            <article class="comunicado-card">
+                <div class="comunicado-header">
+                    <span class="comunicado-type">Oficial</span>
+                    <h2 class="comunicado-title">Suspensión temporal de entrenamientos</h2>
+                    <div class="comunicado-meta">
+                        <div class="comunicado-date">
+                            <span>📅</span>
+                            <span>30 Mayo 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-content">
+                    <p class="comunicado-text">
+                        Debido a las condiciones meteorológicas adversas previstas para los próximos días, 
+                        la dirección del club ha decidido suspender temporalmente los entrenamientos del 
+                        primer equipo hasta nuevo aviso.
+                    </p>
+                    <p class="comunicado-text">
+                        Esta medida se toma como precaución para garantizar la seguridad de todos nuestros 
+                        jugadores y cuerpo técnico. Se evaluará la situación diariamente y se informará 
+                        oportunamente sobre la reanudación de las actividades.
+                    </p>
+                </div>
+            </article>
+
+            <article class="comunicado-card">
+                <div class="comunicado-header">
+                    <span class="comunicado-type">Oficial</span>
+                    <h2 class="comunicado-title">Renovación del contrato del entrenador principal</h2>
+                    <div class="comunicado-meta">
+                        <div class="comunicado-date">
+                            <span>📅</span>
+                            <span>28 Mayo 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-content">
+                    <p class="comunicado-text">
+                        El Club Deportes FAP se complace en anunciar la renovación del contrato del 
+                        entrenador principal, Carlos Mendoza, por dos temporadas adicionales.
+                    </p>
+                    <p class="comunicado-text">
+                        Esta decisión refleja la confianza de la directiva en el proyecto deportivo 
+                        y los excelentes resultados obtenidos durante la presente temporada.
+                    </p>
+                </div>
+            </article>
+
+            <article class="comunicado-card">
+                <div class="comunicado-header">
+                    <span class="comunicado-type">Oficial</span>
+                    <h2 class="comunicado-title">Nuevos horarios de atención al socio</h2>
+                    <div class="comunicado-meta">
+                        <div class="comunicado-date">
+                            <span>📅</span>
+                            <span>25 Mayo 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-content">
+                    <p class="comunicado-text">
+                        A partir del 1 de junio, las oficinas de atención al socio tendrán nuevos 
+                        horarios de atención para brindar un mejor servicio a nuestra comunidad.
+                    </p>
+                    <p class="comunicado-text">
+                        <strong>Nuevos horarios:</strong><br>
+                        Lunes a Viernes: 9:00 AM - 6:00 PM<br>
+                        Sábados: 9:00 AM - 2:00 PM
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Comunicados Recientes</h3>
+                <div class="comunicado-item">
+                    <div class="item-title">Convocatoria Asamblea General Ordinaria</div>
+                    <div class="item-date">22 Mayo 2025</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">Protocolo sanitario para eventos</div>
+                    <div class="item-date">20 Mayo 2025</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">Incorporación nuevo director técnico</div>
+                    <div class="item-date">18 Mayo 2025</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">Modificación reglamento interno</div>
+                    <div class="item-date">15 Mayo 2025</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Archivo</h3>
+                <div class="comunicado-item">
+                    <div class="item-title">📢 Mayo 2025</div>
+                    <div class="item-date">8 comunicados</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">📋 Abril 2025</div>
+                    <div class="item-date">12 comunicados</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">⚖️ Marzo 2025</div>
+                    <div class="item-date">5 comunicados</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">🏆 Febrero 2025</div>
+                    <div class="item-date">3 comunicados</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Contacto Oficial</h3>
+                <div class="comunicado-item">
+                    <div class="item-title">📧 comunicados@deportesfap.com</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">📞 +34 900 123 456</div>
+                </div>
+                <div class="comunicado-item">
+                    <div class="item-title">🏢 Oficinas Centrales</div>
+                    <div class="item-date">Lun-Vie 9:00-18:00</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

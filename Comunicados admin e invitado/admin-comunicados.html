@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Comunicados - Deportes FAP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .fap-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #28a745;
+        }
+
+        .login-btn {
+            background: #28a745;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #218838;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dc3545, #fd7e14);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #dc3545;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #dc3545;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            border: 2px dashed #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-upload:hover {
+            background-color: #f8f9fa;
+        }
+
+        .file-upload-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #dc3545;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background: #c82333;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 12px;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .comunicados-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .comunicado-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #dc3545;
+        }
+
+        .comunicado-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .comunicado-info {
+            flex: 1;
+        }
+
+        .comunicado-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .comunicado-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .comunicado-preview {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .comunicado-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-published {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-draft {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 20px 15px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+                margin: 10px 0;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-Fa3AxFGiNOwCgC1L5U0yw8wI7h6Vtu.png" alt="Logo Fuerza Aerea del Perú" class="fap-logo">
+                <span>Deportes FAP</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#partidos">Partidos</a></li>
+                <li><a href="#jugadores">Jugadores</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="comunicados.html">Comunicados</a></li>
+                <li><a href="#contactanos">Contactanos</a></li>
+            </ul>
+            <button class="login-btn">Iniciar Sesión</button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title">Administrar Comunicados</h1>
+        <p class="page-subtitle">Crear, editar y gestionar comunicados oficiales</p>
+    </div>
+
+    <main class="container">
+        <div class="form-section">
+            <h2 class="section-title">Crear Nuevo Comunicado</h2>
+            
+            <div id="alert-container"></div>
+
+            <form id="comunicado-form">
+                <div class="form-group">
+                    <label class="form-label" for="tipo">Tipo de Comunicado</label>
+                    <select class="form-select" id="tipo" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="oficial">Oficial</option>
+                        <option value="informativo">Informativo</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="convocatoria">Convocatoria</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="titulo">Título del Comunicado</label>
+                    <input type="text" class="form-input" id="titulo" placeholder="Ingrese el título del comunicado" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fecha">Fecha de Publicación</label>
+                    <input type="date" class="form-input" id="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="contenido">Contenido del Comunicado</label>
+                    <textarea class="form-textarea" id="contenido" placeholder="Escriba el contenido completo del comunicado..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Adjuntar Documento (Opcional)</label>
+                    <div class="file-upload" onclick="document.getElementById('archivo').click()">
+                        <input type="file" id="archivo" style="display: none;" accept=".pdf,.doc,.docx">
+                        <div class="file-upload-text">
+                            📎 Haga clic para seleccionar un archivo<br>
+                            <small>Formatos permitidos: PDF, DOC, DOCX</small>
+                        </div>
+                    </div>
+                    <div id="file-name" style="margin-top: 10px; font-size: 14px; color: #666;"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="estado">Estado</label>
+                    <select class="form-select" id="estado" required>
+                        <option value="borrador">Borrador</option>
+                        <option value="publicado">Publicar Inmediatamente</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Crear Comunicado</button>
+            </form>
+        </div>
+
+        <div class="comunicados-list">
+            <h2 class="section-title">Comunicados Existentes</h2>
+            
+            <div class="comunicado-item">
+                <div class="comunicado-header">
+                    <div class="comunicado-info">
+                        <div class="comunicado-title">Suspensión temporal de entrenamientos</div>
+                        <div class="comunicado-meta">
+                            <span class="status-badge status-published">Publicado</span>
+                            📅 30 Mayo 2025 | Tipo: Oficial
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-preview">
+                    Debido a las condiciones meteorológicas adversas previstas para los próximos días, la dirección del club ha decidido suspender temporalmente...
+                </div>
+                <div class="comunicado-actions">
+                    <button class="btn-secondary" onclick="editarComunicado(1)">✏️ Editar</button>
+                    <button class="btn-danger" onclick="eliminarComunicado(1)">🗑️ Eliminar</button>
+                </div>
+            </div>
+
+            <div class="comunicado-item">
+                <div class="comunicado-header">
+                    <div class="comunicado-info">
+                        <div class="comunicado-title">Renovación del contrato del entrenador principal</div>
+                        <div class="comunicado-meta">
+                            <span class="status-badge status-published">Publicado</span>
+                            📅 28 Mayo 2025 | Tipo: Oficial
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-preview">
+                    El Club Deportes FAP se complace en anunciar la renovación del contrato del entrenador principal, Carlos Mendoza...
+                </div>
+                <div class="comunicado-actions">
+                    <button class="btn-secondary" onclick="editarComunicado(2)">✏️ Editar</button>
+                    <button class="btn-danger" onclick="eliminarComunicado(2)">🗑️ Eliminar</button>
+                </div>
+            </div>
+
+            <div class="comunicado-item">
+                <div class="comunicado-header">
+                    <div class="comunicado-info">
+                        <div class="comunicado-title">Nuevos horarios de atención al socio</div>
+                        <div class="comunicado-meta">
+                            <span class="status-badge status-draft">Borrador</span>
+                            📅 25 Mayo 2025 | Tipo: Informativo
+                        </div>
+                    </div>
+                </div>
+                <div class="comunicado-preview">
+                    A partir del 1 de junio, las oficinas de atención al socio tendrán nuevos horarios de atención...
+                </div>
+                <div class="comunicado-actions">
+                    <button class="btn-secondary" onclick="editarComunicado(3)">✏️ Editar</button>
+                    <button class="btn-secondary" onclick="publicarComunicado(3)">📢 Publicar</button>
+                    <button class="btn-danger" onclick="eliminarComunicado(3)">🗑️ Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Establecer fecha actual por defecto
+        document.getElementById('fecha').valueAsDate = new Date();
+
+        // Manejar selección de archivo
+        document.getElementById('archivo').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            const fileNameDiv = document.getElementById('file-name');
+            if (fileName) {
+                fileNameDiv.textContent = `Archivo seleccionado: ${fileName}`;
+                fileNameDiv.style.color = '#28a745';
+            } else {
+                fileNameDiv.textContent = '';
+            }
+        });
+
+        // Manejar envío del formulario
+        document.getElementById('comunicado-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                tipo: document.getElementById('tipo').value,
+                titulo: document.getElementById('titulo').value,
+                fecha: document.getElementById('fecha').value,
+                contenido: document.getElementById('contenido').value,
+                estado: document.getElementById('estado').value,
+                archivo: document.getElementById('archivo').files[0]?.name || null
+            };
+
+            // Simular creación del comunicado
+            mostrarAlerta('success', '✅ Comunicado creado exitosamente');
+            
+            // Limpiar formulario
+            document.getElementById('comunicado-form').reset();
+            document.getElementById('file-name').textContent = '';
+            document.getElementById('fecha').valueAsDate = new Date();
+            
+            console.log('Comunicado creado:', formData);
+        });
+
+        function mostrarAlerta(tipo, mensaje) {
+            const container = document.getElementById('alert-container');
+            const alertClass = tipo === 'success' ? 'alert-success' : 'alert-error';
+            
+            container.innerHTML = `
+                <div class="alert ${alertClass}">
+                    ${mensaje}
+                </div>
+            `;
+            
+            // Ocultar alerta después de 5 segundos
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        function editarComunicado(id) {
+            mostrarAlerta('success', `📝 Editando comunicado #${id}`);
+            // Aquí iría la lógica para cargar los datos en el formulario
+        }
+
+        function eliminarComunicado(id) {
+            if (confirm('¿Está seguro de que desea eliminar este comunicado?')) {
+                mostrarAlerta('success', `🗑️ Comunicado #${id} eliminado`);
+                // Aquí iría la lógica para eliminar el comunicado
+            }
+        }
+
+        function publicarComunicado(id) {
+            if (confirm('¿Desea publicar este comunicado?')) {
+                mostrarAlerta('success', `📢 Comunicado #${id} publicado`);
+                // Aquí iría la lógica para cambiar el estado a publicado
+            }
+        }
+    </script>
+</body>
+</html>
