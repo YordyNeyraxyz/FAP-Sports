@@ -8,17 +8,20 @@ body {
 header {
   width: 100%;
   padding: 20px 40px;
-  display: flex;
-  align-items: center;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: "Merriweather";
 }
 
 .header-content {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .logo-header {
@@ -93,7 +96,6 @@ h2 {
 footer {
   background-color: #f9f9f9;
   padding: 1rem 2rem;
-  margin-top: 2rem;
   border-top: 1px solid #ddd;
 }
 
@@ -110,6 +112,7 @@ footer nav a {
   text-decoration: none;
 }
 
-.socials a {
-  margin-left: 0.5rem;
-}
+footer .redes img {
+    width: 40px;
+    margin: 0 1em;
+  }
