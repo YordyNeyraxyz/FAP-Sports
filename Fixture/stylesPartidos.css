@@ -46,6 +46,11 @@ nav a {
   font-weight: 500;
 }
 
+nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
 .login-btn {
   background-color: #1b8f34;
   color: white;
@@ -53,6 +58,11 @@ nav a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #15732a;
 }
 
 /* Calendar */
@@ -73,6 +83,8 @@ nav a {
 
 .calendar .active {
   background-color: #cbf1d4;
+  border: 1px solid #1b8f34;
+  box-shadow: 0 2px 4px rgba(27, 143, 52, 0.2);
 }
 
 /* Partidos */
@@ -80,18 +92,23 @@ main {
   padding: 20px 30px;
 }
 
-.match-row {
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  margin-bottom: 12px;
-  border-radius: 6px;
-}
-
 .match {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #eee;
+  border-radius: 8px;
   padding: 16px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s;
+}
+
+.match:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .team {
@@ -119,19 +136,17 @@ main {
   font-weight: bold;
 }
 
-.footer-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1e1e1e;
-  color: white;
-  padding: 10px 16px;
-  font-size: 0.75em;
-  border-radius: 0 0 6px 6px;
+.label {
+  font-size: 0.85em;
+  text-align: center;
+  color: #666;
 }
 
-.arrow {
-  font-size: 1.2em;
+/* Ganador */
+.team.winner {
+  background-color: #e6ffed;
+  border-radius: 5px;
+  padding: 4px 6px;
 }
 
 /* Footer */
@@ -154,8 +169,12 @@ footer nav a {
   text-decoration: none;
 }
 
+footer nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
 footer .redes img {
   width: 40px;
   margin: 0 1em;
 }
-
