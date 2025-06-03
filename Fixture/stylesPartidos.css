@@ -1,0 +1,161 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: white;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-header {
+  height: 45px;
+}
+
+.titulo-header {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-btn {
+  background-color: #1b8f34;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Calendar */
+.calendar {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  background-color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.calendar div {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.calendar .active {
+  background-color: #cbf1d4;
+}
+
+/* Partidos */
+main {
+  padding: 20px 30px;
+}
+
+.match-row {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 12px;
+  border-radius: 6px;
+}
+
+.match {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team img {
+  width: 28px;
+  height: 28px;
+}
+
+.team-name {
+  font-weight: 500;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.vs {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 10px 16px;
+  font-size: 0.75em;
+  border-radius: 0 0 6px 6px;
+}
+
+.arrow {
+  font-size: 1.2em;
+}
+
+/* Footer */
+footer {
+  background-color: #f9f9f9;
+  padding: 1rem 2rem;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer nav a {
+  margin-right: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+footer .redes img {
+  width: 40px;
+  margin: 0 1em;
+}
+
