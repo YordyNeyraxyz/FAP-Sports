@@ -1,0 +1,156 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: white;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-header {
+  height: 45px;
+}
+
+.titulo-header {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: "Merriweather"
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
+.login-btn {
+  background-color: #1b8f34;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #15732a;
+}
+
+/* Main Content */
+.presentation-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.presentation-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.presentation-header h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  font-family: Fugaz One;
+}
+.portada {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-bottom: 1em;
+    width: 100%;
+    object-fit: cover;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 30px 0;
+}
+
+.quote-section {
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.quote-author {
+  font-weight: bold;
+  color: #333;
+}
+
+.content-section p {
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Footer */
+footer {
+  background-color: #f9f9f9;
+  padding: 1rem 2rem;
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer nav a {
+  margin-right: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+footer nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
+footer .redes img {
+  width: 40px;
+  margin: 0 1em;
+}
