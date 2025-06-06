@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +6,15 @@
 }
 
 body {
-  font-family: Arial, serif;
+  font-family: Arial, sans-serif;
   background-color: #f9fafb;
-  color: #1a1a1a;
+  color: #333;
+  line-height: 1.6;
 }
 
+/* Header */
 header {
-  background-color: #fff;
+  background-color: white;
   padding: 15px 30px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -33,9 +36,9 @@ header {
 }
 
 .titulo-header {
-  font-family: "Merriweather", cursive;
-  font-size: 1.6rem;
-  color: #111;
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: "Merriweather"
 }
 
 nav a {
@@ -64,33 +67,31 @@ nav a:hover {
   background-color: #15732a;
 }
 
-.noticias-main {
-  display: flex;
-  max-width: 1200px;
+/* Main Content */
+.presentation-container {
+  max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
-  gap: 40px;
 }
 
-.noticia-principal {
-  flex: 2;
+.presentation-header {
+  text-align: center;
   margin-bottom: 40px;
 }
 
-.noticia-imagen img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.presentation-header h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  font-family: Fugaz One;
 }
-
-.noticia-texto {
-  margin-top: 15px;
-}
-
-.noticia-texto h2 {
-  font-family: 'Fugaz One', cursive;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+.portada {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    margin-bottom: 1em;
+    width: 100%;
+    object-fit: cover;
 }
 
 .divider {
@@ -99,42 +100,31 @@ nav a:hover {
   margin: 30px 0;
 }
 
-.autor-fecha {
-  font-size: 0.9rem;
-  color: #1b8f34;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.noticias-secundarias {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.noticia-secundaria {
-  display: flex;
-  gap: 15px;
-}
-
-.noticia-secundaria img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+.quote-section {
+  background-color: #f8f9fa;
+  padding: 30px;
   border-radius: 8px;
+  margin-bottom: 30px;
 }
 
-.noticia-secundaria h3 {
-  font-size: 1rem;
-  margin-bottom: 5px;
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 10px;
 }
 
-.noticia-secundaria p {
-  font-size: 0.85rem;
+.quote-author {
+  font-weight: bold;
+  color: #333;
+}
+
+.content-section p {
+  margin-bottom: 20px;
   color: #444;
 }
 
+/* Footer */
 footer {
   background-color: #f9f9f9;
   padding: 1rem 2rem;
@@ -161,6 +151,6 @@ footer nav a:hover {
 }
 
 footer .redes img {
-  width: 32px;
-  margin: 0 0.5em;
+  width: 40px;
+  margin: 0 1em;
 }

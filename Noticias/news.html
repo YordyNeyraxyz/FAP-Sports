@@ -7,53 +7,125 @@
   <link rel="stylesheet" href="stylesNews.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fugaz+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <header>
     <div class="header-content">
       <div class="left-header">
-        <img src="../logo.png" alt="Company Logo" class="logo-header" />
+        <img src="../logo.png" alt="Logo" class="logo-header" />
         <h2 class="titulo-header">Deportes FAP</h2>
         <nav>
           <a href="#">Inicio</a>
-          <a href="#">Presentaciones</a>
-          <a href="#">Recursos</a>
-          <a href="#">Acerca de</a>
-          <a href="#">Contacto</a>
+          <a href="#">Partidos</a>
+          <a href="#">Jugadores</a>
+          <a href="#">Noticias</a>
+          <a href="#">Contáctanos</a>
         </nav>
       </div>
       <button class="login-btn">Iniciar Sesión</button>
     </div>
   </header>
 
-  <div class="presentation-container">
-    <div class="presentation-header">
-      <h1>Un día de Convivencia con los Licenciados de la FAP</h1>
-      <p>¿Quieres saber cómo es un día de convivencia entre los Licenciados de la FAP? Aquí te mostramos un resumen de la rutina que ellos tienen para fortalecer los lazos</p>
-    </div>
+  <main class="noticias-main">
+    <section class="noticia-principal">
+      <div class="noticia-imagen">
+        <img src="penalty.png" alt="Glorioso Penalti">
+      </div>
+      <div class="noticia-texto">
+        <p class="autor-fecha">Olivia Rhye • 20 Junio 2025</p>
+        <h2>Glorioso Penalti</h2>
+        <p>El Alavés logró una victoria clave ante el Valencia en su lucha por la salvación para tomar distancia sobre el descenso.</p>
+      </div>
 
-    <div class="portada" alt="entrenamiento">
-        <img src="../Pagina Principal 1st Version/entrenamiento.png">
-    </div>
-    
-    <div class="divider"></div>
+      <div class="divider"></div>
 
-    <div class="quote-section">
-      <p class="quote">"In a world older and more complete than ours they move finished and complete, gifted with extensions of the senses we have lost or never attained, living by voices we shall never hear."</p>
-      <p class="quote-author">— Olivia Rhye, Product Designer</p>
-    </div>
+      <div class="noticia-imagen">
+        <img src="Tarjeta_Roja.png" alt="Increíble Sanción">
+      </div>
+      <div class="noticia-texto">
+        <p class="autor-fecha">Olivia Rhye • 20 Junio 2025</p>
+        <h2>Primera Tarjeta Roja</h2>
+        <p>El jugador más reconocido de la Fuerza Roja, debido a su implecable historial en sanciones, por primera vez recibió la primera de toda su vida.</p>
+      </div>
+    </section>
 
-    <div class="content-section">
-      <p>Dolor enim eu tortor urna sed duis nulla. Aliquam vestibulum, nulla odio nisi vitae. In aliquet pellentesque aenean hac vestibulum turpis mi bibendum diam. Tempor integer aliquam in vitae malesuada fringilla.</p>
+    <!-- Lado derecho de noticias cortas -->
+    <aside class="noticias-secundarias">
+      <div class="noticia-secundaria">
+        <img src="ingreso.png" alt="Jugadores de Alas de Hierro alzando manos al cielo">
+        <div>
+          <p class="autor-fecha">Phoenix Baker • 19 Jan 2025</p>
+          <h3>Alas de Hierro logró entrar a Octavos de Final</h3>
+          <p>Cuando todo se daba por perdido a punto de terminar el partido, Jimenez logró dar el gol para pasar a octavos de final.</p>
+        </div>
+      </div>
+
+      <div class="noticia-secundaria">
+        <img src="entrevista.png" alt="entrevista a Fabián Gómez">
+        <div>
+          <p class="autor-fecha">Lana Steiner • 18 Jan 2025</p>
+          <h3>Cambio de Última Hora</h3>
+          <p>“Era necesario cambiar de estrategia para obtener la victoria”, aseguró Fabián Gómez, entrenador de Amanecer Andino.</p>
+        </div>
+      </div>
       
-      <p>Elit nisi in eleifend sed nisi. Pulvinar at orci, proin imperdiet commodo consectetur convallis risus. Sed condimentum enim dignissim adipiscing faucibus consequat, urna. Viverra purus et erat auctor aliquam. Risus, volutpat vulputate posuere purus sit congue convallis aliquet. Arcu id augue ut feugiat donec porttitor neque. Mauris, neque ultricies eu vestibulum, bibendum quam lorem id. Dolor lacus, eget nunc lectus in tellus, pharetra, porttitor.</p>
+      <div class="noticia-secundaria">
+        <img src="ingreso.png" alt="Jugadores de Alas de Hierro alzando manos al cielo">
+        <div>
+          <p class="autor-fecha">Phoenix Baker • 19 Jan 2025</p>
+          <h3>Alas de Hierro logró entrar a Octavos de Final</h3>
+          <p>Cuando todo se daba por perdido a punto de terminar el partido, Jimenez logró dar el gol para pasar a octavos de final.</p>
+        </div>
+      </div>
+
+      <div class="noticia-secundaria">
+        <img src="entrevista.png" alt="entrevista a Fabián Gómez">
+        <div>
+          <p class="autor-fecha">Lana Steiner • 18 Jan 2025</p>
+          <h3>Cambio de Última Hora</h3>
+          <p>“Era necesario cambiar de estrategia para obtener la victoria”, aseguró Fabián Gómez, entrenador de Amanecer Andino.</p>
+        </div>
+      </div>
       
-      <p>Ipsum sit mattis nulla quam nulla. Gravida id gravida ac enim mauris id. Non pellentesque congue eget consectetur turpis. Sapien, dictum molestie sem tempor. Diam elit, orci, tincidunt aenean tempus. Quis velit eget ut tortor tellus. Sed vel, congue felis elit erat nam nibh orci.</p>
-    </div>
-  </div>
+      <div class="noticia-secundaria">
+        <img src="ingreso.png" alt="Jugadores de Alas de Hierro alzando manos al cielo">
+        <div>
+          <p class="autor-fecha">Phoenix Baker • 19 Jan 2025</p>
+          <h3>Alas de Hierro logró entrar a Octavos de Final</h3>
+          <p>Cuando todo se daba por perdido a punto de terminar el partido, Jimenez logró dar el gol para pasar a octavos de final.</p>
+        </div>
+      </div>
+
+      <div class="noticia-secundaria">
+        <img src="entrevista.png" alt="entrevista a Fabián Gómez">
+        <div>
+          <p class="autor-fecha">Lana Steiner • 18 Jan 2025</p>
+          <h3>Cambio de Última Hora</h3>
+          <p>“Era necesario cambiar de estrategia para obtener la victoria”, aseguró Fabián Gómez, entrenador de Amanecer Andino.</p>
+        </div>
+      </div>
+      
+      <div class="noticia-secundaria">
+        <img src="ingreso.png" alt="Jugadores de Alas de Hierro alzando manos al cielo">
+        <div>
+          <p class="autor-fecha">Phoenix Baker • 19 Jan 2025</p>
+          <h3>Alas de Hierro logró entrar a Octavos de Final</h3>
+          <p>Cuando todo se daba por perdido a punto de terminar el partido, Jimenez logró dar el gol para pasar a octavos de final.</p>
+        </div>
+      </div>
+
+      <div class="noticia-secundaria">
+        <img src="entrevista.png" alt="entrevista a Fabián Gómez">
+        <div>
+          <p class="autor-fecha">Lana Steiner • 18 Jan 2025</p>
+          <h3>Cambio de Última Hora</h3>
+          <p>“Era necesario cambiar de estrategia para obtener la victoria”, aseguró Fabián Gómez, entrenador de Amanecer Andino.</p>
+        </div>
+      </div>
+    </aside>
+  </main>
 
   <footer>
     <div class="footer-content">
