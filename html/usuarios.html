@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios - Deportes FAP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar {
+      background-color: #007f00;
+    }
+
+    .navbar a,
+    .navbar-brand {
+      color: white !important;
+    }
+
+    .table th,
+    .table td {
+      vertical-align: middle;
+    }
+
+    .edit-icon {
+      cursor: pointer;
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Deportes FAP</a>
+      <div class="navbar-nav">
+        <a class="nav-link" href="#">Usuarios</a>
+        <a class="nav-link" href="#">Partidos</a>
+        <a class="nav-link" href="#">Jugadores</a>
+        <a class="nav-link" href="#">Comunicados</a>
+        <a class="nav-link" href="#">Reglamos</a>
+        <a class="nav-link" href="#">Correo</a>
+        <a class="nav-link" href="#">Equipos</a>
+        <a class="nav-link" href="#">Resultados</a>
+        <a class="nav-link" href="#">Goleadores</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <div class="container my-4">
+    <h4>Usuarios</h4>
+
+    <!-- Buscador y Botón Agregar -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <input id="searchInput" type="text" class="form-control w-50" placeholder="Buscar Usuario">
+      <button class="btn btn-success ms-3" data-bs-toggle="modal" data-bs-target="#modalNuevoUsuario">Agregar +</button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive">
+      <table id="userTable" class="table table-bordered text-center">
+        <thead class="table-light">
+          <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Teléfono</th>
+            <th>Correo Electrónico</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Fecha de Emisión</th>
+            <th>Promoción</th>
+            <th>Década</th>
+            <th>Estado</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td>Juan</td>
+            <td>Pérez</td>
+            <td>12345678</td>
+            <td>+237 233-333-333</td>
+            <td>juan@example.com</td>
+            <td>2000-05-20</td>
+            <td>2022-06-21</td>
+            <td>2025</td>
+            <td>2010</td>
+            <td>Activo</td>
+            <td>Jugador</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary edit-btn" title="Editar">
+                ✏️
+              </button>
+              <button class="btn btn-sm btn-outline-danger delete-btn" title="Eliminar">
+                🗑️
+              </button>
+            </td>
+          </tr>
+          <!-- Más filas aquí -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <nav>
+      <ul class="pagination justify-content-center" id="pagination">
+        <!-- JS rellenará esto -->
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Modal (opcional, como antes) -->
+  <div class="modal fade" id="modalNuevoUsuario" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-success">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title">Registrar Nuevo Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formUsuario">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>Nombres</label>
+                <input type="text" id="nombres" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label>Apellidos</label>
+                <input type="text" id="apellidos" class="form-control" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>DNI</label>
+                <input type="text" id="dni" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label>Teléfono</label>
+                <input type="text" id="telefono" class="form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>Correo Electrónico</label>
+                <input type="email" id="email" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label>Fecha de Nacimiento</label>
+                <input type="date" id="nacimiento" class="form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>Fecha de Emisión</label>
+                <input type="date" id="emision" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label>Promoción</label>
+                <input type="text" id="promocion" class="form-control">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label>Década</label>
+                <input type="text" id="decada" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label for="estado">Estado</label>
+                <div class="input-group">
+                  <select class="form-select" id="estado">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                  </select>
+                  <button class="btn btn-success" type="button" id="btnAplicarEstado">Aplicar +</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="rol">Rol</label>
+              <div class="input-group">
+                <select class="form-select" id="rol">
+                  <option value="" selected>Seleccionar</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Delegado">Delegado</option>
+                  <option value="Miembro de mesa">Miembro de mesa</option>
+                  <option value="Jugador">Jugador</option>
+                </select>
+                <button class="btn btn-success" type="button" id="btnAplicarRol">Aplicar +</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-success" id="btnAgregar">Añadir</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap + Script buscador + paginación -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const rowsPerPage = 5;
+    const table = document.getElementById('userTable');
+    const tbody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const pagination = document.getElementById('pagination');
+    let currentPage = 1;
+
+    function renderTableRows() {
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const searchTerm = searchInput.value.toLowerCase();
+      const filtered = rows.filter(row =>
+        row.textContent.toLowerCase().includes(searchTerm)
+      );
+
+      const totalPages = Math.ceil(filtered.length / rowsPerPage);
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+
+      rows.forEach(row => row.style.display = 'none');
+      filtered.slice(start, end).forEach(row => row.style.display = '');
+
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      pagination.innerHTML = '';
+
+      const createPageItem = (text, page) => {
+        const li = document.createElement('li');
+        li.className = `page-item ${page === currentPage ? 'active' : ''}`;
+        const a = document.createElement('a');
+        a.className = 'page-link';
+        a.href = '#';
+        a.textContent = text;
+        a.onclick = e => {
+          e.preventDefault();
+          currentPage = page;
+          renderTableRows();
+        };
+        li.appendChild(a);
+        return li;
+      };
+
+      if (currentPage > 1)
+        pagination.appendChild(createPageItem('‹', currentPage - 1));
+
+      for (let i = 1; i <= totalPages; i++)
+        pagination.appendChild(createPageItem(i, i));
+
+      if (currentPage < totalPages)
+        pagination.appendChild(createPageItem('›', currentPage + 1));
+    }
+
+    searchInput.addEventListener('input', () => {
+      currentPage = 1;
+      renderTableRows();
+    });
+
+    window.addEventListener('load', renderTableRows);
+  </script>
+
+  <script>
+    const btnAgregar = document.getElementById('btnAgregar');
+    const form = document.getElementById('formUsuario');
+    const modal = document.getElementById('modalNuevoUsuario');
+
+    btnAgregar.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const datos = {
+        nombres: document.getElementById('nombres').value,
+        apellidos: document.getElementById('apellidos').value,
+        dni: document.getElementById('dni').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        nacimiento: document.getElementById('nacimiento').value,
+        emision: document.getElementById('emision').value,
+        promocion: document.getElementById('promocion').value,
+        decada: document.getElementById('decada').value,
+        estado: document.getElementById('estado').value,
+        rol: document.getElementById('rol').value
+      };
+
+      // Validación básica
+      if (!datos.nombres || !datos.apellidos) {
+        alert("Nombres y apellidos son obligatorios.");
+        return;
+      }
+
+      // Crear nueva fila
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+  <td>${datos.nombres}</td>
+  <td>${datos.apellidos}</td>
+  <td>${datos.dni}</td>
+  <td>${datos.telefono}</td>
+  <td>${datos.email}</td>
+  <td>${datos.nacimiento}</td>
+  <td>${datos.emision}</td>
+  <td>${datos.promocion}</td>
+  <td>${datos.decada}</td>
+  <td>${datos.estado}</td>
+  <td>${datos.rol}</td>
+  <td>
+    <button class="btn btn-sm btn-outline-primary edit-btn">✏️</button>
+    <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
+  </td>
+`;
+
+      document.getElementById('tableBody').appendChild(newRow);
+
+      // Reset y cerrar
+      form.reset();
+      const bsModal = bootstrap.Modal.getInstance(modal);
+      bsModal.hide();
+
+      renderTableRows(); // actualiza paginación y búsqueda
+    });
+  </script>
+
+  <script>
+    // Delegación de eventos para Editar y Eliminar
+    document.getElementById('userTable').addEventListener('click', function (e) {
+      const target = e.target;
+
+      // Eliminar registro
+      if (target.classList.contains('delete-btn')) {
+        if (confirm('¿Deseas eliminar este usuario?')) {
+          target.closest('tr').remove();
+        }
+      }
+
+      // Editar registro
+      if (target.classList.contains('edit-btn')) {
+        const row = target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Rellenar el formulario del modal
+        document.getElementById('nombres').value = cells[0].textContent;
+        document.getElementById('apellidos').value = cells[1].textContent;
+        document.getElementById('dni').value = cells[2].textContent;
+        document.getElementById('telefono').value = cells[3].textContent;
+        document.getElementById('email').value = cells[4].textContent;
+        document.getElementById('nacimiento').value = cells[5].textContent;
+        document.getElementById('emision').value = cells[6].textContent;
+        document.getElementById('promocion').value = cells[7].textContent;
+        document.getElementById('decada').value = cells[8].textContent;
+        document.getElementById('estado').value = cells[9].textContent;
+        document.getElementById('rol').value = cells[10].textContent;
+
+        // Guardar referencia de la fila para editarla después
+        form.setAttribute('data-editing', true);
+        form.setAttribute('data-row-id', row.rowIndex);
+
+        // Abrir modal
+        const modalEdit = new bootstrap.Modal(document.getElementById('modalNuevoUsuario'));
+        modalEdit.show();
+      }
+    });
+
+    // Reutilizar botón "Añadir" para actualizar si estamos editando
+    btnAgregar.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const datos = {
+        nombres: document.getElementById('nombres').value,
+        apellidos: document.getElementById('apellidos').value,
+        dni: document.getElementById('dni').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        nacimiento: document.getElementById('nacimiento').value,
+        emision: document.getElementById('emision').value,
+        promocion: document.getElementById('promocion').value,
+        decada: document.getElementById('decada').value,
+        estado: document.getElementById('estado').value,
+        rol: document.getElementById('rol').value
+      };
+
+      // Validación básica
+      if (!datos.nombres || !datos.apellidos) {
+        alert("Nombres y apellidos son obligatorios.");
+        return;
+      }
+
+      // Si es edición, actualiza la fila
+      if (form.getAttribute('data-editing')) {
+        const table = document.getElementById('userTable');
+        const rowIndex = form.getAttribute('data-row-id');
+        const row = table.rows[rowIndex];
+
+        row.cells[0].textContent = datos.nombres;
+        row.cells[1].textContent = datos.apellidos;
+        row.cells[2].textContent = datos.dni;
+        row.cells[3].textContent = datos.telefono;
+        row.cells[4].textContent = datos.email;
+        row.cells[5].textContent = datos.nacimiento;
+        row.cells[6].textContent = datos.emision;
+        row.cells[7].textContent = datos.promocion;
+        row.cells[8].textContent = datos.decada;
+        row.cells[9].textContent = datos.estado;
+        row.cells[10].textContent = datos.rol;
+
+        form.removeAttribute('data-editing');
+        form.removeAttribute('data-row-id');
+      } else {
+        // Crear nueva fila
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+        <td>${datos.nombres}</td>
+        <td>${datos.apellidos}</td>
+        <td>${datos.dni}</td>
+        <td>${datos.telefono}</td>
+        <td>${datos.email}</td>
+        <td>${datos.nacimiento}</td>
+        <td>${datos.emision}</td>
+        <td>${datos.promocion}</td>
+        <td>${datos.decada}</td>
+        <td>${datos.estado}</td>
+        <td>${datos.rol}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary edit-btn">✏️</button>
+          <button class="btn btn-sm btn-outline-danger delete-btn">🗑️</button>
+        </td>
+      `;
+        document.getElementById('tableBody').appendChild(newRow);
+      }
+
+      form.reset();
+      const bsModal = bootstrap.Modal.getInstance(modal);
+      bsModal.hide();
+    });
+  </script>
+</body>
+
+</html>
