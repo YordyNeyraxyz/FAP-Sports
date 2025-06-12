@@ -31,7 +31,7 @@
     </div>
   </header>
 
-  <main class="contenedor-comunicados">
+  <main class="contenedor-reclamos">
     <div class="titulo-busqueda">
       <h3>Reclamos</h3>
       <label for="toggle-modal" class="btn-agregar">Agregar +</label>
@@ -54,6 +54,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Ejemplo de filas -->
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
@@ -61,7 +62,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <tr>
           <td>Sit.</td>
@@ -70,7 +71,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <tr>
           <td>Sit.</td>
@@ -79,7 +80,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <tr>
           <td>Sit.</td>
@@ -88,7 +89,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <tr>
           <td>Sit.</td>
@@ -97,7 +98,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <tr>
           <td>Sit.</td>
@@ -106,16 +107,7 @@
           <td>VIE</td>
           <td>VIE</td>
           <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
-        </tr>
-        <tr>
-          <td>Sit.</td>
-          <td>Cameroun</td>
-          <td>Douala</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
         <!-- más filas -->
       </tbody>
@@ -135,24 +127,49 @@
     </div>
   </main>
 
-  <!-- Modal oculto por defecto -->
+  <!-- Modal para registrar reclamo -->
   <input type="checkbox" id="toggle-modal" class="modal-toggle" />
+  <div id="modalAgregar" class="modal">
+    <div class="modal-content">
+      <h3>Respuesta</h3>
+      <form>
+        <label for="respuesta">Respuesta:</label>
+        <input type="text" id="respuesta" name="respuesta" />
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado">
+          <option value="">Seleccione</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="atendido">Atendido</option>
+        </select>
+
+        <div class="modal-botones">
+          <button class="btn-verde">Añadir</button>
+          <a href="#" class="btn-blanco">Anular</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para agregar respuesta -->
+  <input type="checkbox" id="toggle-modal-respuesta" class="modal-toggle" />
   <div class="modal">
     <div class="modal-content">
-      <h3>Registrar Nuevo Comunicado/Noticia</h3>
+      <h3>Respuesta</h3>
       <form>
-        <label>Título:</label>
-        <input type="text" placeholder="Ingrese el título" />
-        
-        <label>Descripción:</label>
-        <textarea placeholder="Ingrese la descripción"></textarea>
+        <label for="respuesta">Respuesta:</label>
+        <input type="text" id="respuesta" name="respuesta" />
 
-        <label>Imagen:</label>
-        <input type="text" placeholder="URL o nombre de archivo" />
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado">
+          <option value="">Seleccione</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="atendido">Atendido</option>
+        </select>
 
-        <div class="botones-form">
-          <button class="btn-añadir">Añadir</button>
-          <label for="toggle-modal" class="btn-cancelar">Anular</label>
+        <div class="modal-botones">
+          <button class="btn-verde">Añadir</button>
+          <label for="toggle-modal-respuesta" class="btn-blanco">Anular</label>
         </div>
       </form>
     </div>
