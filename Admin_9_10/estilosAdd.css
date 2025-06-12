@@ -1,16 +1,18 @@
+/* Reset básico para eliminar márgenes y padding predeterminados */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos generales del cuerpo */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9fafb;
   color: #1a1a1a;
 }
 
-/* Header */
+/* Estilos del encabezado */
 header {
   background-color: #04790f;
   padding: 15px 30px;
@@ -40,6 +42,7 @@ header {
   color: #fff;
 }
 
+/* Estilos de navegación */
 nav a {
   margin: 0 8px;
   text-decoration: none;
@@ -51,7 +54,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Contenido principal */
+/* Estilos del contenido principal - específico para reclamos */
 .contenedor-reclamos {
   max-width: 1100px;
   margin: 40px auto;
@@ -70,6 +73,7 @@ nav a:hover {
   color: #333;
 }
 
+/* Estilos de botones */
 .btn-agregar {
   background-color: #1b8f34;
   color: white;
@@ -83,6 +87,7 @@ nav a:hover {
   background-color: #15732a;
 }
 
+/* Estilos del buscador */
 .buscador input {
   width: 100%;
   padding: 10px 14px;
@@ -92,6 +97,7 @@ nav a:hover {
   font-size: 1rem;
 }
 
+/* Estilos de la tabla */
 .tabla {
   width: 100%;
   border-collapse: collapse;
@@ -114,7 +120,7 @@ nav a:hover {
   cursor: pointer;
 }
 
-/* Paginación */
+/* Estilos de paginación */
 .paginacion {
   display: flex;
   justify-content: center;
@@ -142,7 +148,7 @@ nav a:hover {
   background-color: #e6f5eb;
 }
 
-/* Modal */
+/* Estilos del modal (oculto por defecto) */
 .modal-toggle {
   display: none;
 }
@@ -160,10 +166,12 @@ nav a:hover {
   z-index: 1000;
 }
 
+/* Mostrar modal cuando el checkbox está marcado */
 .modal-toggle:checked + .modal {
   display: flex;
 }
 
+/* Contenido del modal */
 .modal-content {
   background: white;
   padding: 30px;
@@ -178,6 +186,7 @@ nav a:hover {
   color: #1b8f34;
 }
 
+/* Estilos de formulario en el modal */
 .modal-content label {
   display: block;
   margin-bottom: 5px;
@@ -194,40 +203,17 @@ nav a:hover {
   font-size: 1rem;
 }
 
-.modal-content textarea {
-  resize: vertical;
-  height: 100px;
-}
-
-.botones-form {
-  display: flex;
-  justify-content: flex-start;
-  gap: 12px;
-}
-
-.btn-añadir {
-  background-color: #1b8f34;
-  color: white;
-  padding: 8px 18px;
-  border: none;
+/* Estilos específicos para select en el modal */
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
   border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-añadir:hover {
-  background-color: #15732a;
-}
-
-.btn-cancelar {
-  background-color: #eee;
-  color: #333;
-  padding: 8px 18px;
-  border-radius: 6px;
-  cursor: pointer;
   border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
-/* Botones del segundo modal */
+/* Estilos específicos para botones del modal */
 .modal-botones {
   display: flex;
   justify-content: flex-start;
@@ -257,14 +243,4 @@ nav a:hover {
   border: 1px solid #ccc;
   text-decoration: none;
   display: inline-block;
-}
-
-/* Estilo adicional para <select> en el segundo modal */
-.modal-content select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
 }

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Metadatos básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reclamos</title>
+  
+  <!-- Enlaces a hojas de estilo y fuentes -->
   <link rel="stylesheet" href="estilosAdd.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,11 +14,15 @@
 </head>
 <body>
 
+  <!-- Cabecera del sitio -->
   <header>
     <div class="header-content">
       <div class="left-header">
+        <!-- Logo y título -->
         <img src="../logo.png" alt="Logo" class="logo-header" />
         <h2 class="titulo-header">Deportes FAP</h2>
+        
+        <!-- Menú de navegación -->
         <nav>
           <a href="#">Usuarios</a>
           <a href="#">Partidos</a>
@@ -31,16 +38,20 @@
     </div>
   </header>
 
+  <!-- Contenido principal -->
   <main class="contenedor-reclamos">
+    <!-- Sección de título y botón agregar -->
     <div class="titulo-busqueda">
       <h3>Reclamos</h3>
       <label for="toggle-modal" class="btn-agregar">Agregar +</label>
     </div>
 
+    <!-- Barra de búsqueda -->
     <div class="buscador">
       <input type="text" placeholder="Buscar Reclamo">
     </div>
 
+    <!-- Tabla de reclamos -->
     <table class="tabla">
       <thead>
         <tr>
@@ -50,11 +61,11 @@
           <th>Solicitud</th>
           <th>Respuesta</th>
           <th>Estados</th>
-          <th></th>
+          <th></th> <!-- Columna para acciones -->
         </tr>
       </thead>
       <tbody>
-        <!-- Ejemplo de filas -->
+        <!-- Filas de ejemplo (datos dummy) -->
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
@@ -91,39 +102,22 @@
           <td>VIE</td>
           <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
         </tr>
-        <tr>
-          <td>Sit.</td>
-          <td>Cameroun</td>
-          <td>Douala</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
-        </tr>
-        <tr>
-          <td>Sit.</td>
-          <td>Cameroun</td>
-          <td>Douala</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td>VIE</td>
-          <td><label for="toggle-modal-respuesta"><img src="edit-icon.png" class="icono-editar" alt="Editar"></label></td>
-        </tr>
-        <!-- más filas -->
+        <!-- Más filas repetidas como ejemplo -->
       </tbody>
     </table>
 
+    <!-- Paginación -->
     <div class="paginacion">
-      <button>&lt;</button>
+      <button>&lt;</button> <!-- Botón anterior -->
       <button>1</button>
       <button>2</button>
       <button>3</button>
       <button>4</button>
-      <button class="activo">5</button>
+      <button class="activo">5</button> <!-- Página activa -->
       <button>6</button>
-      <span>...</span>
+      <span>...</span> <!-- Separador -->
       <button>10</button>
-      <button>&gt;</button>
+      <button>&gt;</button> <!-- Botón siguiente -->
     </div>
   </main>
 
@@ -133,6 +127,7 @@
     <div class="modal-content">
       <h3>Respuesta</h3>
       <form>
+        <!-- Campos del formulario -->
         <label for="respuesta">Respuesta:</label>
         <input type="text" id="respuesta" name="respuesta" />
 
@@ -143,6 +138,7 @@
           <option value="atendido">Atendido</option>
         </select>
 
+        <!-- Botones del formulario -->
         <div class="modal-botones">
           <button class="btn-verde">Añadir</button>
           <a href="#" class="btn-blanco">Anular</a>
@@ -151,12 +147,13 @@
     </div>
   </div>
 
-  <!-- Modal para agregar respuesta -->
+  <!-- Segundo modal para agregar respuesta -->
   <input type="checkbox" id="toggle-modal-respuesta" class="modal-toggle" />
   <div class="modal">
     <div class="modal-content">
       <h3>Respuesta</h3>
       <form>
+        <!-- Campos del formulario -->
         <label for="respuesta">Respuesta:</label>
         <input type="text" id="respuesta" name="respuesta" />
 
@@ -167,6 +164,7 @@
           <option value="atendido">Atendido</option>
         </select>
 
+        <!-- Botones del formulario -->
         <div class="modal-botones">
           <button class="btn-verde">Añadir</button>
           <label for="toggle-modal-respuesta" class="btn-blanco">Anular</label>

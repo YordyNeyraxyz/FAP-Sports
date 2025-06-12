@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Metadatos básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Comunicados / Noticias</title>
+  
+  <!-- Enlaces a hojas de estilo -->
   <link rel="stylesheet" href="estilosAdd.css"/>
+  
+  <!-- Fuentes de Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fugaz+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Cabecera del sitio -->
   <header>
     <div class="header-content">
       <div class="left-header">
+        <!-- Logo y título -->
         <img src="../logo.png" alt="Logo" class="logo-header" />
         <h2 class="titulo-header">Deportes FAP</h2>
+        
+        <!-- Menú de navegación -->
         <nav>
           <a href="#">Usuarios</a>
           <a href="#">Partidos</a>
@@ -31,16 +40,20 @@
     </div>
   </header>
 
+  <!-- Contenido principal -->
   <main class="contenedor-comunicados">
+    <!-- Sección de título y botón agregar -->
     <div class="titulo-busqueda">
       <h3>Comunicados / Noticias</h3>
       <label for="toggle-modal" class="btn-agregar">Agregar +</label>
     </div>
 
+    <!-- Barra de búsqueda -->
     <div class="buscador">
       <input type="text" placeholder="Buscar Comunicado / Noticia">
     </div>
 
+    <!-- Tabla de comunicados -->
     <table class="tabla">
       <thead>
         <tr>
@@ -48,83 +61,93 @@
           <th>Título</th>
           <th>Descripción</th>
           <th>Imagen</th>
-          <th></th>
+          <th></th> <!-- Columna para acciones -->
         </tr>
       </thead>
       <tbody>
+        <!-- Filas de ejemplo (datos dummy) -->
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
         <tr>
           <td>Sit.</td>
           <td>Cameroun</td>
           <td>Douala</td>
           <td>VIE</td>
-          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
         </tr>
-        <!-- más filas -->
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.png" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <!-- Más filas repetidas como ejemplo -->
       </tbody>
     </table>
 
+    <!-- Paginación -->
     <div class="paginacion">
-      <button>&lt;</button>
+      <button>&lt;</button> <!-- Botón anterior -->
       <button>1</button>
       <button>2</button>
       <button>3</button>
-      <button class="activo">4</button>
+      <button class="activo">4</button> <!-- Página activa -->
       <button>5</button>
       <button>6</button>
-      <span>...</span>
+      <span>...</span> <!-- Separador -->
       <button>10</button>
-      <button>&gt;</button>
+      <button>&gt;</button> <!-- Botón siguiente -->
     </div>
   </main>
 
-  <!-- Modal oculto por defecto -->
+  <!-- Modal para agregar nuevos comunicados (oculto por defecto) -->
   <input type="checkbox" id="toggle-modal" class="modal-toggle" />
   <div class="modal">
     <div class="modal-content">
       <h3>Registrar Nuevo Comunicado/Noticia</h3>
       <form>
+        <!-- Campos del formulario -->
         <label>Título:</label>
         <input type="text" placeholder="Ingrese el título" />
         
@@ -134,6 +157,7 @@
         <label>Imagen:</label>
         <input type="text" placeholder="URL o nombre de archivo" />
 
+        <!-- Botones del formulario -->
         <div class="botones-form">
           <button class="btn-añadir">Añadir</button>
           <label for="toggle-modal" class="btn-cancelar">Anular</label>
