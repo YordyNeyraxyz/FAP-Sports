@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comunicados / Noticias</title>
+  <link rel="stylesheet" href="estilosAdd.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fugaz+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="left-header">
+        <img src="../logo.png" alt="Logo" class="logo-header" />
+        <h2 class="titulo-header">Deportes FAP</h2>
+        <nav>
+          <a href="#">Usuarios</a>
+          <a href="#">Partidos</a>
+          <a href="#">Jugadores</a>
+          <a href="#">Comunicados</a>
+          <a href="#">Reclamos</a>
+          <a href="#">Correo</a>
+          <a href="#">Equipos</a>
+          <a href="#">Resultados</a>
+          <a href="#">Goleadores</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor-comunicados">
+    <div class="titulo-busqueda">
+      <h3>Comunicados / Noticias</h3>
+      <label for="toggle-modal" class="btn-agregar">Agregar +</label>
+    </div>
+
+    <div class="buscador">
+      <input type="text" placeholder="Buscar Comunicado / Noticia">
+    </div>
+
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <tr>
+          <td>Sit.</td>
+          <td>Cameroun</td>
+          <td>Douala</td>
+          <td>VIE</td>
+          <td><img src="edit-icon.svg" class="icono-editar" alt="Editar"></td>
+        </tr>
+        <!-- más filas -->
+      </tbody>
+    </table>
+
+    <div class="paginacion">
+      <button>&lt;</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="activo">4</button>
+      <button>5</button>
+      <button>6</button>
+      <span>...</span>
+      <button>10</button>
+      <button>&gt;</button>
+    </div>
+  </main>
+
+  <!-- Modal oculto por defecto -->
+  <input type="checkbox" id="toggle-modal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-content">
+      <h3>Registrar Nuevo Comunicado/Noticia</h3>
+      <form>
+        <label>Título:</label>
+        <input type="text" placeholder="Ingrese el título" />
+        
+        <label>Descripción:</label>
+        <textarea placeholder="Ingrese la descripción"></textarea>
+
+        <label>Imagen:</label>
+        <input type="text" placeholder="URL o nombre de archivo" />
+
+        <div class="botones-form">
+          <button class="btn-añadir">Añadir</button>
+          <label for="toggle-modal" class="btn-cancelar">Anular</label>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
