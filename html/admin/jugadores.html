@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jugadores - Deportes FAP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f9f9f9;
+        }
+
+        header {
+            background-color: #006400;
+            padding: 10px 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        input[type="search"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #2e7d32;
+            border-radius: 5px;
+        }
+
+        .btn-green {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background: #f1f1f1;
+        }
+
+        .pagination {
+            text-align: center;
+        }
+
+        .pagination button {
+            margin: 2px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .pagination .active {
+            background-color: #2e7d32;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            border: 1px solid #2e7d32;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .modal-buttons {
+            text-align: center;
+        }
+
+        .modal-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .btn-cancel {
+            background: white;
+            border: 1px solid #ccc;
+        }
+
+        .btn-confirm {
+            background: #2e7d32;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Deportes FAP</h1>
+        <nav>
+            <a href="#">Usuarios</a>
+            <a href="#">Partidos</a>
+            <a href="#">Jugadores</a>
+            <a href="#">Comunicados</a>
+            <a href="#">Reglamos</a>
+            <a href="#">Correo</a>
+            <a href="#">Equipos</a>
+            <a href="#">Resultados</a>
+            <a href="#">Goleadores</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div>
+            <h2>Jugadores</h2>
+        </div>
+
+        <!--Buscador-->
+        <div class="top-bar">
+            <input type="search" id="searchInput" placeholder="Buscar Jugador">
+            <button class="btn-green" onclick="openModal()">Agregar +</button>
+        </div>
+
+        <!--Tabla-->
+        <table>
+            <thead>
+                <tr>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Equipo</th>
+                    <th>Promoción</th>
+                    <th>Mes</th>
+                    <th>Década</th>
+                </tr>
+            </thead>
+            <tbody id="playerTableBody"></tbody>
+        </table>
+
+        <div class="pagination" id="paginationControls"></div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="playerModal">
+        <div class="modal-content">
+            <h3>Registrar Nuevo Jugador</h3>
+            <input type="text" id="dni" placeholder="DNI">
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="text" id="apellido" placeholder="Apellido">
+            <input type="text" id="equipo" placeholder="Equipo">
+            <input type="email" id="promocion" placeholder="Promoción">
+            <input type="text" id="mes" placeholder="Mes">
+            <input type="text" id="decada" placeholder="Década">
+            <div class="modal-buttons">
+                <button class="btn-confirm" onclick="addPlayer()">Añadir</button>
+                <button class="btn-cancel" onclick="closeModal()">Anular</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const players = [];
+        const rowsPerPage = 5;
+        let currentPage = 1;
+
+        function openModal() {
+            document.getElementById("playerModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("playerModal").style.display = "none";
+        }
+
+        /*Añadir jugadores*/
+        function addPlayer() {
+            const dni = document.getElementById('dni').value;
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const equipo = document.getElementById('equipo').value;
+            const promocion = document.getElementById('promocion').value;
+            const mes = document.getElementById('mes').value;
+            const decada = document.getElementById('decada').value;
+
+            if (!dni || !nombre || !apellido || !equipo) {
+                alert('Campos obligatorios faltantes');
+                return;
+            }
+
+            players.push({ dni, nombre, apellido, equipo, promocion, mes, decada });
+            closeModal();
+            clearModalInputs();
+            renderTable();
+        }
+
+        function clearModalInputs() {
+            document.querySelectorAll('#playerModal input').forEach(input => input.value = '');
+        }
+
+        function renderTable() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = players.filter(p =>
+                p.dni.toLowerCase().includes(searchTerm) ||
+                p.nombre.toLowerCase().includes(searchTerm) ||
+                p.apellido.toLowerCase().includes(searchTerm) ||
+                p.equipo.toLowerCase().includes(searchTerm)
+            );
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const paginatedPlayers = filtered.slice(start, start + rowsPerPage);
+
+            const tbody = document.getElementById('playerTableBody');
+            tbody.innerHTML = '';
+            paginatedPlayers.forEach(p => {
+                const row = `<tr>
+        <td>${p.dni}</td>
+        <td>${p.nombre}</td>
+        <td>${p.apellido}</td>
+        <td>${p.equipo}</td>
+        <td>${p.promocion}</td>
+        <td>${p.mes}</td>
+        <td>${p.decada}</td>
+      </tr>`;
+                tbody.innerHTML += row;
+            });
+
+            renderPagination(filtered.length);
+        }
+
+
+        /*AÑadir paginacion*/
+        function renderPagination(totalRows) {
+            const totalPages = Math.ceil(totalRows / rowsPerPage);
+            const pagination = document.getElementById('paginationControls');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.innerText = i;
+                btn.className = i === currentPage ? 'active' : '';
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderTable();
+                };
+                pagination.appendChild(btn);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', () => {
+            currentPage = 1;
+            renderTable();
+        });
+
+        window.onclick = function (event) {
+            const modal = document.getElementById("playerModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    </script>
+
+</body>
+
+</html>
