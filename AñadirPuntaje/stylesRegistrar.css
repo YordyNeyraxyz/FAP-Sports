@@ -1,0 +1,258 @@
+/* Reset básico para eliminar márgenes y paddings por defecto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos generales del body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+/* Estilos del header */
+header {
+  background-color: white;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Contenedor del header */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Parte izquierda del header */
+.left-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo en el header */
+.logo-header {
+  height: 45px;
+}
+
+/* Título en el header */
+.titulo-header {
+  font-size: 1.4em;
+  font-weight: bold;
+  font-family: "Merriweather"
+}
+
+/* Estilos de los enlaces de navegación */
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Efecto hover para los enlaces de navegación */
+nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
+/* Estilos del botón de login */
+.login-btn {
+  background-color: #1b8f34;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Efecto hover para el botón de login */
+.login-btn:hover {
+  background-color: #15732a;
+}
+
+/* Contenedor principal del contenido */
+.content-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.content-container h1 {
+  font-family: "Merriweather", serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* Calendario semanal */
+.week-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.week-calendar div {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-right: 1px solid #eee;
+}
+
+.week-calendar div:last-child {
+  border-right: none;
+}
+
+/* Contenedor de partidos */
+.matches-container {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Filas de partidos */
+.match-row, .score-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.match-row {
+  border-bottom: 1px solid #eee;
+}
+
+.score-row {
+  background-color: #f9f9f9;
+}
+
+/* Celdas comunes */
+.team-cell, .status-cell, .vs-cell, .empty-cell, .comment-cell, 
+.score-label, .score-input-cell {
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos específicos para cada tipo de celda */
+.team-cell {
+  font-weight: bold;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.status-cell {
+  color: #1b8f34;
+}
+
+.vs-cell {
+  font-weight: bold;
+}
+
+.comment-cell {
+  color: #666;
+}
+
+.score-label {
+  font-weight: 500;
+  color: #555;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.score-input-cell {
+  color: #666;
+  justify-content: flex-start;
+}
+
+/* Divisor */
+.divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 20px 0;
+}
+
+/* Botón Añadir Puntajes */
+.add-scores-btn {
+  background-color: #1b8f34;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-scores-btn:hover {
+  background-color: #15732a;
+}
+
+.add-scores-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+/* Estilos del footer */
+footer {
+  background-color: #c8deca;
+  padding: 1rem 2rem;
+  border-top: 1px solid #ddd;
+}
+
+/* Contenedor del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Enlaces del footer */
+footer nav a {
+  margin-right: 1rem;
+  color: #333;
+  text-decoration: none;
+}
+
+/* Efecto hover para los enlaces del footer */
+footer nav a:hover {
+  color: #1b8f34;
+  text-decoration: underline;
+}
+
+/* Iconos de redes sociales en el footer */
+footer .redes img {
+  width: 40px;
+  margin: 0 1em;
+}
