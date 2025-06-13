@@ -232,11 +232,11 @@
     </script>
 
     <script>
-        const editBtn = document.getElementById('editBtn');
+        const btnAgregar= document.getElementById('btnAgregar');
         const form = document.getElementById('formUsuario');
         const modal = document.getElementById('modalNuevoUsuario');
 
-        editBtn.addEventListener('click', function (e) {
+        btnAgregar.addEventListener('click', function (e) {
             e.preventDefault();
 
             const datos = {
@@ -269,13 +269,9 @@
         <td>${datos.fecha}</td>
         <td>${datos.hora}</td>
         <td>
-                            <button class="btn btn-sm btn-outline-primary edit-btn" title="Editar">
-                                ✏️
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger delete-btn" title="Eliminar">
-                                🗑️
-                            </button>
-                        </td>
+            <button class="btn btn-sm btn-outline-primary edit-btn" title="Editar">✏️</button>
+            <button class="btn btn-sm btn-outline-danger delete-btn" title="Eliminar">🗑️</button>
+        </td>
     `;
                 document.getElementById('tableBody').appendChild(newRow);
             }
