@@ -1,61 +1,74 @@
-/* Reset */
+/*
+ * Hoja de estilos para la página de error 404
+ * Diseño adaptativo y centrado en la experiencia de usuario
+ */
+
+/* Reset básico para normalizar estilos entre navegadores */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos generales del cuerpo del documento */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: white;
   color: #111827;
-  min-height: 100vh;
+  min-height: 100vh; /* Ocupa al menos toda la altura de la pantalla */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* Centrado vertical y horizontal */
 }
 
+/* Contenedor principal del contenido del error */
 .container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permite el ajuste responsivo */
   max-width: 1200px;
   width: 100%;
   padding: 40px;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 40px; /* Espacio entre secciones */
 }
 
+/* Estilos para la sección de texto */
 .text {
-  flex: 1;
-  min-width: 300px;
+  flex: 1; /* Ocupa el espacio disponible */
+  min-width: 300px; /* Ancho mínimo para evitar compresión */
 }
 
+/* Estilos para el código de error */
 .error-code {
-  color: #16a34a; /* verde */
+  color: #16a34a; /* Color verde distintivo */
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 10px;
 }
 
+/* Estilos para el título principal */
 .text h1 {
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 800; /* Grosor de fuente extrabold */
   margin-bottom: 20px;
 }
 
+/* Estilos para el mensaje descriptivo */
 .message {
   font-size: 1rem;
-  color: #4b5563;
+  color: #4b5563; /* Color gris para texto secundario */
   margin-bottom: 30px;
 }
 
+/* Contenedor de botones */
 .buttons {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  gap: 1rem; /* Espacio entre botones */
+  flex-wrap: wrap; /* Ajuste en pantallas pequeñas */
 }
 
+/* Estilos base para botones */
 .btn {
   padding: 10px 20px;
   border-radius: 6px;
@@ -63,9 +76,10 @@ body {
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.2s;
+  transition: all 0.2s; /* Transición suave para hover */
 }
 
+/* Estilos para botón secundario (outline) */
 .btn-outline {
   border: 1px solid #d1d5db;
   background-color: white;
@@ -73,25 +87,28 @@ body {
 }
 
 .btn-outline:hover {
-  background-color: #f3f4f6;
+  background-color: #f3f4f6; /* Efecto hover suave */
 }
 
+/* Estilos para botón primario */
 .btn-primary {
-  background-color: #15803d;
+  background-color: #15803d; /* Verde más oscuro que el código de error */
   color: white;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #166534;
+  background-color: #166534; /* Verde más oscuro al hacer hover */
 }
 
+/* Sección de imagen */
 .image {
   flex: 1;
   min-width: 300px;
-  position: relative;
+  position: relative; /* Para posicionar elementos hijos absolutos */
 }
 
+/* Estilos para la imagen principal */
 .image img {
   width: 100%;
   height: auto;
@@ -99,7 +116,10 @@ body {
   display: block;
 }
 
-/* Cinta decorativa gris en la parte inferior (estilo SVG simulado) */
+/*
+ * Elemento decorativo en la parte inferior de la imagen
+ * Simula un efecto de cinta/reflejo usando gradientes radiales
+ */
 .decoración {
   position: absolute;
   bottom: 0;
@@ -108,24 +128,25 @@ body {
   height: 30%;
   background: radial-gradient(circle at 20% 80%, rgba(100, 116, 139, 0.2), transparent),
               radial-gradient(circle at 70% 90%, rgba(100, 116, 139, 0.4), transparent);
-  pointer-events: none;
+  pointer-events: none; /* Permite clicks a través del elemento */
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-/* Responsivo */
+/* ----------------- MEDIA QUERIES ----------------- */
+/* Estilos responsivos para pantallas menores a 768px */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
+    flex-direction: column; /* Apila elementos verticalmente */
+    text-align: center; /* Centra el texto */
+    padding: 20px; /* Reduce el padding */
   }
 
   .buttons {
-    justify-content: center;
+    justify-content: center; /* Centra los botones */
   }
 
   .image {
-    order: -1;
+    order: -1; /* Coloca la imagen antes del texto */
   }
 }

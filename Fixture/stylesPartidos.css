@@ -1,45 +1,51 @@
-/* Reset básico */
+/* Reset básico para eliminar márgenes y paddings por defecto */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos generales del body */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9fafb;
   color: #333;
 }
 
-/* Header */
+/* Estilos del header */
 header {
   background-color: white;
   padding: 15px 30px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Contenedor del header */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Parte izquierda del header */
 .left-header {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
+/* Logo en el header */
 .logo-header {
   height: 45px;
 }
 
+/* Título en el header */
 .titulo-header {
   font-size: 1.4em;
   font-weight: bold;
   font-family: "Merriweather"
 }
 
+/* Estilos de los enlaces de navegación */
 nav a {
   margin: 0 12px;
   text-decoration: none;
@@ -47,11 +53,13 @@ nav a {
   font-weight: 500;
 }
 
+/* Efecto hover para los enlaces de navegación */
 nav a:hover {
   color: #1b8f34;
   text-decoration: underline;
 }
 
+/* Estilos del botón de login */
 .login-btn {
   background-color: #1b8f34;
   color: white;
@@ -62,11 +70,12 @@ nav a:hover {
   transition: background-color 0.2s;
 }
 
+/* Efecto hover para el botón de login */
 .login-btn:hover {
   background-color: #15732a;
 }
 
-/* Calendar */
+/* Estilos del calendario semanal */
 .calendar {
   display: flex;
   justify-content: space-around;
@@ -76,23 +85,26 @@ nav a:hover {
   font-weight: bold;
 }
 
+/* Elementos individuales del calendario */
 .calendar div {
   text-align: center;
   padding: 5px 10px;
   border-radius: 8px;
 }
 
+/* Semana activa en el calendario */
 .calendar .active {
   background-color: #cbf1d4;
   border: 1px solid #1b8f34;
   box-shadow: 0 2px 4px rgba(27, 143, 52, 0.2);
 }
 
-/* Partidos */
+/* Estilos del contenido principal */
 main {
   padding: 20px 30px;
 }
 
+/* Estilos de cada partido */
 .match {
   display: flex;
   justify-content: space-between;
@@ -108,55 +120,63 @@ main {
   transition: box-shadow 0.2s;
 }
 
+/* Efecto hover para los partidos */
 .match:hover {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* Estilos para cada equipo en el partido */
 .team {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+/* Escudos de los equipos */
 .team img {
   width: 28px;
   height: 28px;
 }
 
+/* Nombre del equipo (clase no utilizada en el HTML) */
 .team-name {
   font-weight: 500;
 }
 
+/* Marcador del partido */
 .score {
   font-weight: bold;
   font-size: 1.1em;
 }
 
+/* Separador VS entre equipos */
 .vs {
   font-size: 1.4em;
   font-weight: bold;
 }
 
+/* Etiqueta del partido (ej: FINALS) */
 .label {
   font-size: 0.85em;
   text-align: center;
   color: #666;
 }
 
-/* Ganador */
+/* Estilos para el equipo ganador */
 .team.winner {
   background-color: #e6ffed;
   border-radius: 5px;
   padding: 4px 6px;
 }
 
-/* Footer */
+/* Estilos del footer */
 footer {
   background-color: #c8deca;
   padding: 1rem 2rem;
   border-top: 1px solid #ddd;
 }
 
+/* Contenedor del footer */
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -164,17 +184,20 @@ footer {
   flex-wrap: wrap;
 }
 
+/* Enlaces del footer */
 footer nav a {
   margin-right: 1rem;
   color: #333;
   text-decoration: none;
 }
 
+/* Efecto hover para los enlaces del footer */
 footer nav a:hover {
   color: #1b8f34;
   text-decoration: underline;
 }
 
+/* Iconos de redes sociales en el footer */
 footer .redes img {
   width: 40px;
   margin: 0 1em;

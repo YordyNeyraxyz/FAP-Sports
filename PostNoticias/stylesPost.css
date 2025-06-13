@@ -1,10 +1,16 @@
-/* Reset básico */
+/* 
+ * Hoja de estilos para la página de artículo/post
+ * Contiene los estilos para la estructura completa de la página
+ */
+
+/* Reset básico para eliminar márgenes y paddings por defecto */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos generales del cuerpo del documento */
 body {
   font-family: Arial, sans-serif;
   background-color: #f9fafb;
@@ -12,7 +18,7 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+/* ----------------- HEADER ----------------- */
 header {
   background-color: white;
   padding: 15px 30px;
@@ -41,6 +47,7 @@ header {
   font-family: "Merriweather"
 }
 
+/* Estilos para la navegación */
 nav a {
   margin: 0 12px;
   text-decoration: none;
@@ -53,6 +60,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* Estilos para el botón de login */
 .login-btn {
   background-color: #1b8f34;
   color: white;
@@ -67,13 +75,15 @@ nav a:hover {
   background-color: #15732a;
 }
 
-/* Main Content */
+/* ----------------- MAIN CONTENT ----------------- */
+/* Contenedor principal del artículo */
 .presentation-container {
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
+/* Cabecera del artículo */
 .presentation-header {
   text-align: center;
   margin-bottom: 40px;
@@ -85,6 +95,8 @@ nav a:hover {
   margin-bottom: 20px;
   font-family: Fugaz One;
 }
+
+/* Estilos para la imagen de portada */
 .portada {
     display: flex;
     flex-wrap: wrap;
@@ -94,12 +106,14 @@ nav a:hover {
     object-fit: cover;
 }
 
+/* Divisor visual entre secciones */
 .divider {
   height: 1px;
   background-color: #e0e0e0;
   margin: 30px 0;
 }
 
+/* Estilos para la sección de cita */
 .quote-section {
   background-color: #f8f9fa;
   padding: 30px;
@@ -119,12 +133,13 @@ nav a:hover {
   color: #333;
 }
 
+/* Estilos para el contenido de texto */
 .content-section p {
   margin-bottom: 20px;
   color: #444;
 }
 
-/* Footer */
+/* ----------------- FOOTER ----------------- */
 footer {
   background-color: #c8deca;
   padding: 1rem 2rem;
@@ -139,6 +154,7 @@ footer {
   flex-wrap: wrap;
 }
 
+/* Estilos para los enlaces del footer */
 footer nav a {
   margin-right: 1rem;
   color: #333;
@@ -150,6 +166,7 @@ footer nav a:hover {
   text-decoration: underline;
 }
 
+/* Estilos para los iconos de redes sociales */
 footer .redes img {
   width: 40px;
   margin: 0 1em;

@@ -1,129 +1,151 @@
+/* Estilos generales del body */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #fff;
-  color: #333;
+  font-family: Arial, sans-serif;  /* Fuente principal */
+  margin: 0;  /* Elimina márgenes por defecto */
+  background-color: #fff;  /* Fondo blanco */
+  color: #333;  /* Color de texto principal */
 }
 
+/* Estilos del header */
 header {
-  width: 100%;
-  padding: 20px 40px;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;  /* Ancho completo */
+  padding: 20px 40px;  /* Espaciado interno */
+  background-color: white;  /* Fondo blanco */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Sombra sutil */
 }
 
+/* Contenedor del header */
 .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex;  /* Diseño flexible */
+  justify-content: space-between;  /* Espacio entre elementos */
+  align-items: center;  /* Centrado vertical */
 }
 
+/* Parte izquierda del header */
 .left-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex;  /* Diseño flexible */
+  align-items: center;  /* Centrado vertical */
+  gap: 10px;  /* Espacio entre elementos hijos */
 }
 
+/* Logo en el header */
 .logo-header {
-  height: 50px;
+  height: 50px;  /* Altura fija */
 }
 
+/* Título en el header */
 .titulo-header {
-  font-size: 24px;
-  color: #333;
-  font-weight: bold;
-  font-family: "Merriweather"
+  font-size: 24px;  /* Tamaño de fuente */
+  color: #333;  /* Color de texto */
+  font-weight: bold;  /* Negrita */
+  font-family: "Merriweather"  /* Fuente especial */
 }
 
+/* Barra de navegación */
 nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+  display: flex;  /* Diseño flexible */
+  gap: 1rem;  /* Espacio entre enlaces */
+  align-items: center;  /* Centrado vertical */
 }
 
+/* Enlaces de navegación */
 nav a {
-  text-decoration: none;
-  color: #333;
+  text-decoration: none;  /* Sin subrayado */
+  color: #333;  /* Color de texto */
 }
 
+/* Botón de login */
 .login-btn {
-  background-color: #00994d;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
+  background-color: #00994d;  /* Color verde */
+  color: white;  /* Texto blanco */
+  border: none;  /* Sin borde */
+  padding: 0.5rem 1rem;  /* Espaciado interno */
+  cursor: pointer;  /* Cursor tipo pointer */
+  border-radius: 5px;  /* Esquinas redondeadas */
 }
 
+/* Contenido principal */
 main {
-  padding: 2rem;
+  padding: 2rem;  /* Espaciado interno */
 }
 
+/* Títulos de sección */
 h2 {
-  margin: 2rem 0 1rem;
-  font-size: 1.5rem;
-  color: #222;
+  margin: 2rem 0 1rem;  /* Márgenes superior e inferior */
+  font-size: 1.5rem;  /* Tamaño de fuente */
+  color: #222;  /* Color de texto oscuro */
 }
 
+/* Grupo de jugadores */
 .group {
-  margin-bottom: 2rem;
+  margin-bottom: 2rem;  /* Margen inferior */
 }
 
+/* Grid de jugadores (4 columnas) */
 .player-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  display: grid;  /* Diseño de grid */
+  grid-template-columns: repeat(4, 1fr);  /* 4 columnas de igual ancho */
+  gap: 1.5rem;  /* Espacio entre elementos */
 }
 
+/* Tarjeta de jugador individual */
 .player-card {
-  text-align: center;
-  border: 2px solid green;
-  padding: 1rem;
-  border-radius: 5px;
-  background-color: white;
+  text-align: center;  /* Texto centrado */
+  border: 2px solid green;  /* Borde verde */
+  padding: 1rem;  /* Espaciado interno */
+  border-radius: 5px;  /* Esquinas redondeadas */
+  background-color: white;  /* Fondo blanco */
 }
 
+/* Imagen del jugador */
 .player-card img {
-  width: 100%;
-  height: auto;
-  max-height: 180px;
-  object-fit: contain;
-  margin-bottom: 0.5rem;
+  width: 100%;  /* Ancho completo */
+  height: auto;  /* Altura automática */
+  max-height: 180px;  /* Altura máxima */
+  object-fit: contain;  /* Ajuste de imagen */
+  margin-bottom: 0.5rem;  /* Margen inferior */
 }
 
+/* Texto de la tarjeta */
 .player-card p {
-  margin: 0.2rem 0;
+  margin: 0.2rem 0;  /* Margen vertical pequeño */
 }
 
+/* Nombre del jugador (negrita) */
 .player-card strong {
-  font-size: 1rem;
+  font-size: 1rem;  /* Tamaño de fuente */
 }
 
+/* Posición del jugador */
 .position {
-  color: #228B22;
-  font-size: 0.9rem;
+  color: #228B22;  /* Color verde forest */
+  font-size: 0.9rem;  /* Tamaño de fuente pequeño */
 }
 
+/* Pie de página */
 footer {
-  background-color: #c8deca;
-  padding: 1rem 2rem;
-  border-top: 1px solid #ddd;
+  background-color: #c8deca;  /* Fondo verde claro */
+  padding: 1rem 2rem;  /* Espaciado interno */
+  border-top: 1px solid #ddd;  /* Borde superior */
 }
 
+/* Contenedor del footer */
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  display: flex;  /* Diseño flexible */
+  justify-content: space-between;  /* Espacio entre elementos */
+  align-items: center;  /* Centrado vertical */
+  flex-wrap: wrap;  /* Permite wrap en pantallas pequeñas */
 }
 
+/* Enlaces del footer */
 footer nav a {
-  margin-right: 1rem;
-  color: #333;
-  text-decoration: none;
+  margin-right: 1rem;  /* Margen derecho */
+  color: #333;  /* Color de texto */
+  text-decoration: none;  /* Sin subrayado */
 }
 
+/* Iconos de redes sociales */
 footer .redes img {
-  width: 40px;
-  margin: 0 1em;
+  width: 40px;  /* Ancho fijo */
+  margin: 0 1em;  /* Margen horizontal */
 }

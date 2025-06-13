@@ -1,34 +1,42 @@
+/*
+ * Hoja de estilos para la página de Login
+ * Diseño moderno con formulario y sección visual
+ */
+
+/* Reset básico para normalizar estilos */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Estilos generales del cuerpo del documento */
 body {
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Ocupa toda la altura visible */
 }
 
+/* ----------------- HEADER ----------------- */
 header {
   width: 100%;
   padding: 20px 40px;
   display: flex;
   align-items: center;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: "Merriweather";
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  font-family: "Merriweather"; /* Fuente especial para el header */
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 15px; /* Espacio entre logo y título */
 }
 
 .logo-header {
-  height: 50px;
+  height: 50px; /* Tamaño fijo para el logo */
 }
 
 .titulo-header {
@@ -37,13 +45,15 @@ header {
   font-weight: bold;
 }
 
+/* ----------------- MAIN LAYOUT ----------------- */
 .container {
   display: flex;
-  flex: 1;
+  flex: 1; /* Ocupa todo el espacio disponible */
 }
 
+/* Sección del formulario de login */
 .login-container {
-  width: 50%;
+  width: 50%; /* Mitad del ancho disponible */
   padding: 40px;
   display: flex;
   justify-content: center;
@@ -52,9 +62,10 @@ header {
 
 .login-box {
   width: 100%;
-  max-width: 400px;
+  max-width: 400px; /* Ancho máximo para mejor legibilidad */
 }
 
+/* Estilos para los textos */
 h1 {
   font-size: 28px;
   margin-bottom: 10px;
@@ -62,19 +73,22 @@ h1 {
 
 p {
   margin-bottom: 20px;
-  color: #555;
+  color: #555; /* Color gris para texto secundario */
 }
 
+/* ----------------- FORMULARIO ----------------- */
 form {
   display: flex;
   flex-direction: column;
 }
 
+/* Etiquetas de los campos */
 label {
   margin-bottom: 5px;
   font-weight: bold;
 }
 
+/* Campos de entrada */
 input {
   padding: 10px;
   margin-bottom: 15px;
@@ -82,6 +96,7 @@ input {
   border-radius: 5px;
 }
 
+/* Enlace "Olvidé contraseña" */
 .olvide {
   font-size: 14px;
   color: green;
@@ -90,8 +105,10 @@ input {
   text-decoration: none;
 }
 
+/* ----------------- BOTONES ----------------- */
+/* Botón principal */
 .btn-principal {
-  background-color: #007e0d;
+  background-color: #007e0d; /* Verde institucional */
   color: white;
   padding: 12px;
   border: none;
@@ -101,6 +118,7 @@ input {
   margin-bottom: 15px;
 }
 
+/* Botón de Google */
 .btn-google {
   display: flex;
   align-items: center;
@@ -117,6 +135,7 @@ input {
   margin-right: 10px;
 }
 
+/* ----------------- ENLACES ADICIONALES ----------------- */
 .registro {
   margin-top: 15px;
   text-align: center;
@@ -136,9 +155,10 @@ input {
   font-size: 14px;
 }
 
+/* ----------------- SECCIÓN DE IMAGEN ----------------- */
 .imagen-container {
-  width: 50%;
-  background-color: #111;
+  width: 50%; /* Mitad del ancho disponible */
+  background-color: #111; /* Fondo oscuro como contraste */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,6 +166,6 @@ input {
 
 .imagen-futbol {
   width: 100%;
-  height: 100vh;
-  object-fit: cover;
+  height: 100vh; /* Altura completa de la ventana */
+  object-fit: cover; /* Ajuste de imagen manteniendo proporciones */
 }
