@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración para diseño responsive -->
+    <title>Deportes FAP - Registro de Goleadores</title> <!-- Título de la página que aparece en la pestaña del navegador -->
+    <!-- Importamos Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS BÁSICOS Y RESETEO ===== */
+        * {
+            margin: 0; /* Elimina los márgenes predeterminados */
+            padding: 0; /* Elimina el padding predeterminado */
+            box-sizing: border-box; /* Hace que el padding no afecte al ancho total */
+            font-family: Arial, sans-serif; /* Fuente predeterminada para toda la página */
+        }
+
+        /* Configuración básica del cuerpo de la página */
+        body {
+            min-height: 100vh; /* Altura mínima de toda la ventana */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+            background-color: #f9f9f9; /* Fondo gris muy claro */
+        }
+
+        /* ===== ESTILOS DEL ENCABEZADO ===== */
+        header {
+            background-color: #0a7c0a; /* Verde corporativo de Deportes FAP */
+            color: white;
+            padding: 1rem 2rem;
+            display: flex; /* Usamos flexbox para alinear elementos */
+            align-items: center; /* Centra verticalmente los elementos */
+        }
+
+        /* Contenedor del logo y título */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Estilo del logo */
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        /* Estilo del título principal */
+        .header-title {
+            margin-right: 20px;
+        }
+
+        /* Estilos de la navegación */
+        nav {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        /* Lista de enlaces de navegación */
+        nav ul {
+            display: flex; /* Alinea los elementos horizontalmente */
+            list-style: none; /* Elimina los puntos de la lista */
+        }
+
+        /* Elementos de la lista de navegación */
+        nav ul li {
+            margin-left: 20px; /* Espacio entre elementos del menú */
+        }
+
+        /* Enlaces de navegación */
+        nav ul li a {
+            color: white;
+            text-decoration: none; /* Elimina el subrayado de los enlaces */
+        }
+
+        /* ===== ESTILOS DEL CONTENIDO PRINCIPAL ===== */
+        main {
+            flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+            padding: 2rem;
+            max-width: 1200px; /* Limita el ancho máximo para mejor legibilidad */
+            margin: 0 auto; /* Centra el contenido */
+            width: 100%;
+        }
+
+        /* Título de la página */
+        h1 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        /* ===== ESTILOS DE LAS FILAS DE JUGADORES ===== */
+        /* Cada fila contiene un jugador y su contador de goles */
+        .player-row {
+            display: flex; /* Usa flexbox para alinear elementos horizontalmente */
+            align-items: center; /* Centra verticalmente los elementos */
+            justify-content: space-between; /* Distribuye el espacio entre elementos */
+            padding: 1rem 0; /* Espaciado vertical */
+            border-bottom: 1px solid #eee; /* Línea separadora entre filas */
+        }
+
+        /* Etiqueta "Jugador" */
+        .player-label {
+            font-weight: 500; /* Semi-negrita */
+            color: #333;
+        }
+
+        /* Contenedor del selector de jugador */
+        .player-select-container {
+            position: relative; /* Para posicionamiento de elementos internos */
+            flex: 1; /* Ocupa el espacio disponible */
+            margin: 0 1rem; /* Margen horizontal */
+        }
+
+        /* Selector personalizado de jugador (simula un dropdown) */
+        .player-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer; /* Cambia el cursor a mano */
+            display: flex;
+            justify-content: space-between; /* Separa el texto y la flecha */
+            align-items: center;
+        }
+
+        /* Texto dentro del selector (placeholder) */
+        .player-select-text {
+            color: #999; /* Gris claro para indicar que es un placeholder */
+        }
+
+        /* Flecha del selector */
+        .player-select-arrow {
+            color: #666;
+        }
+
+        /* Etiqueta "Veces" */
+        .times-label {
+            font-weight: 500;
+            color: #333;
+            margin-right: 1rem;
+        }
+
+        /* Campo de entrada numérica para cantidad de goles */
+        .times-input {
+            width: 60px; /* Ancho fijo para números pequeños */
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center; /* Centra el número */
+        }
+
+        /* Botón para añadir más jugadores */
+        .add-btn {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Icono dentro del botón añadir */
+        .add-btn i {
+            margin-left: 4px;
+        }
+
+        /* ===== ESTILOS DE LOS BOTONES DE ACCIÓN ===== */
+        /* Contenedor de los botones principales */
+        .action-buttons {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente */
+            margin-top: 2rem;
+            gap: 1rem; /* Espacio entre botones */
+        }
+
+        /* Botón principal de añadir */
+        .add-button {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            width: 150px; /* Ancho fijo para ambos botones */
+        }
+
+        /* Botón secundario de cancelar */
+        .cancel-button {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            width: 150px; /* Ancho fijo para ambos botones */
+        }
+
+        /* ===== ESTILOS DEL PIE DE PÁGINA ===== */
+        footer {
+            background-color: #e0ebd7; /* Verde muy claro */
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between; /* Distribuye el espacio entre los elementos */
+            align-items: center;
+        }
+
+        /* Sección izquierda del footer */
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor del logo en el footer */
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tamaño del logo en el footer */
+        .footer-logo .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Título junto al logo en el footer */
+        .footer-logo h3 {
+            margin-left: 10px;
+        }
+
+        /* Enlaces en la sección central del footer */
+        .footer-center a {
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Contenedor de iconos de redes sociales */
+        .social-icons {
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: flex-end; /* Alinea los iconos a la derecha */
+        }
+
+        /* Iconos individuales de redes sociales */
+        .social-icons a {
+            margin-left: 15px;
+            color: #333;
+        }
+
+        /* Contenedor de badges de aplicaciones */
+        .app-badges {
+            display: flex;
+            justify-content: flex-end; /* Alinea los badges a la derecha */
+        }
+
+        /* Imágenes de badges de aplicaciones */
+        .app-badges img {
+            height: 35px;
+            margin-left: 10px;
+        }
+
+        /* ===== DISEÑO RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            /* Cambia la disposición de las filas de jugadores a vertical en pantallas pequeñas */
+            .player-row {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem 0;
+            }
+            
+            /* Ajusta el espaciado de las etiquetas en móviles */
+            .player-label, .times-label {
+                margin-bottom: 0.5rem;
+            }
+            
+            /* Hace que el selector de jugador ocupe todo el ancho en móviles */
+            .player-select-container {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+            
+            /* Hace que el campo de entrada numérica ocupe todo el ancho en móviles */
+            .times-input {
+                width: 100%;
+            }
+            
+            /* Reorganiza el footer en pantallas pequeñas */
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            /* Añade espacio entre secciones del footer en móviles */
+            .footer-left, .footer-center, .footer-right {
+                margin-bottom: 1rem;
+            }
+            
+            /* Centra los iconos sociales y badges en móviles */
+            .social-icons, .app-badges {
+                justify-content: center;
+            }
+            
+            /* Centra el logo del footer en móviles */
+            .footer-logo {
+                justify-content: center;
+            }
+            
+            /* Reorganiza el header en pantallas pequeñas */
+            header {
+                flex-direction: column;
+            }
+            
+            /* Ajusta el menú de navegación en móviles */
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas */
+                justify-content: center; /* Centra los elementos del menú */
+            }
+            
+            /* Ajusta el espaciado de los elementos del menú en móviles */
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO: Contiene el logo, título y navegación -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de la Fuerza Aérea del Perú -->
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-OlrefbYDGX4MCh1B0dbMgzmOPEyL5N.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+            <h1 class="header-title">Deportes FAP</h1>
+        </div>
+        <!-- Menú de navegación principal -->
+        <nav>
+            <ul>
+                <li><a href="#">Registrar Resultados</a></li>
+                <li><a href="#">Registrar Goleadores</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- Título de la sección -->
+        <h1>Registro de Goleadores</h1>
+        
+        <!-- Primera fila de jugador -->
+        <div class="player-row">
+            <!-- Etiqueta del jugador -->
+            <div class="player-label">Jugador</div>
+            <!-- Selector de jugador (dropdown personalizado) -->
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <!-- Campo para ingresar cantidad de goles -->
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+        </div>
+        
+        <!-- Segunda fila de jugador (estructura idéntica) -->
+        <div class="player-row">
+            <div class="player-label">Jugador</div>
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+        </div>
+        
+        <!-- Tercera fila de jugador -->
+        <div class="player-row">
+            <div class="player-label">Jugador</div>
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+        </div>
+        
+        <!-- Cuarta fila de jugador -->
+        <div class="player-row">
+            <div class="player-label">Jugador</div>
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+        </div>
+        
+        <!-- Quinta fila de jugador -->
+        <div class="player-row">
+            <div class="player-label">Jugador</div>
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+        </div>
+        
+        <!-- Sexta fila de jugador (con botón adicional para añadir más jugadores) -->
+        <div class="player-row">
+            <div class="player-label">Jugador</div>
+            <div class="player-select-container">
+                <div class="player-select">
+                    <span class="player-select-text">.</span>
+                    <i class="fas fa-chevron-down player-select-arrow"></i>
+                </div>
+            </div>
+            <div class="times-label">Veces</div>
+            <input type="number" class="times-input" min="0" value=".">
+            <!-- Botón para añadir más jugadores a la lista -->
+            <button class="add-btn">
+                Añadir <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        
+        <!-- Botones principales de acción -->
+        <div class="action-buttons">
+            <!-- Botón para guardar los datos -->
+            <button class="add-button">Añadir</button>
+            <!-- Botón para cancelar la operación -->
+            <button class="cancel-button">Anular</button>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA: Dividido en tres secciones -->
+    <footer>
+        <!-- Sección izquierda: Logo, nombre y copyright -->
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-OlrefbYDGX4MCh1B0dbMgzmOPEyL5N.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+                <h3>Deportes FAP</h3>
+            </div>
+            <p>© 2023 Fuerza Aérea del Perú. Todos los derechos reservados.</p>
+        </div>
+        
+        <!-- Sección central: Enlaces a páginas de información -->
+        <div class="footer-center">
+            <a href="#">Privacidad</a>
+            <a href="#">Soporte</a>
+        </div>
+        
+        <!-- Sección derecha: Redes sociales y badges de aplicaciones -->
+        <div class="footer-right">
+            <!-- Iconos de redes sociales -->
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <!-- Badges de descarga de aplicaciones -->
+            <div class="app-badges">
+                <a href="#"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="App Store"></a>
+                <a href="#"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

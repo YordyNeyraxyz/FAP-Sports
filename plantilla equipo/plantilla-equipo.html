@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportes FAP - Plantilla de Equipo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos básicos de reseteo y configuración general */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* IMPORTANTE: Layout principal usando flexbox para ocupar toda la altura de la pantalla */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+
+        /* IMPORTANTE: Estructura del grid para la plantilla de equipo - dos columnas */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Divide en dos columnas iguales */
+            gap: 1.5rem; /* Espacio entre columnas */
+        }
+
+        /* IMPORTANTE: Estructura de cada fila de jugador */
+        .player-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Etiqueta del jugador (nombre/número) */
+        .player-label {
+            width: 120px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* IMPORTANTE: Contenedor del selector de jugador con posicionamiento relativo para elementos internos */
+        .player-select-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        /* IMPORTANTE: Estilo del selector desplegable personalizado */
+        .player-select {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* IMPORTANTE: Botones de acción para cada jugador */
+        .apply-btn {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        /* IMPORTANTE: Botones de acción principales al final del formulario */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        /* Botón principal de añadir */
+        .add-button {
+            background-color: #0a7c0a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Botón secundario de cancelar */
+        .cancel-button {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* IMPORTANTE: Diseño responsive - cambia a una columna en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr; /* Cambia a una sola columna */
+            }
+            
+            /* Otros ajustes responsive para header y footer */
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado estándar con logo y navegación -->
+    <header>
+        <!-- Estructura del encabezado omitida para brevedad -->
+    </header>
+
+    <!-- IMPORTANTE: Contenido principal con la plantilla de equipo -->
+    <main>
+        <h1>Plantilla de Equipo</h1>
+        
+        <!-- IMPORTANTE: Grid de dos columnas para jugadores titulares y suplentes -->
+        <div class="team-grid">
+            <!-- Columna de Jugadores Titulares -->
+            <div class="players-column">
+                <!-- IMPORTANTE: Estructura repetitiva para cada jugador titular -->
+                <div class="player-row">
+                    <div class="player-label">Jugador 1</div>
+                    <div class="player-select-container">
+                        <!-- Selector personalizado con apariencia de dropdown -->
+                        <div class="player-select">
+                            <span class="player-select-text">.</span>
+                            <i class="fas fa-chevron-down player-select-arrow"></i>
+                        </div>
+                        <!-- Botón de acción para aplicar la selección -->
+                        <button class="apply-btn">
+                            Aplicar <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Estructura similar para Jugadores 2-6 omitida para brevedad -->
+            </div>
+            
+            <!-- Columna de Jugadores Suplentes -->
+            <div class="substitutes-column">
+                <!-- IMPORTANTE: Estructura similar para cada jugador suplente -->
+                <div class="player-row">
+                    <div class="player-label">Jugador Suplente 1</div>
+                    <div class="player-select-container">
+                        <div class="player-select">
+                            <span class="player-select-text">.</span>
+                            <i class="fas fa-chevron-down player-select-arrow"></i>
+                        </div>
+                        <button class="apply-btn">
+                            Aplicar <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Estructura similar para Suplentes 2-4 omitida para brevedad -->
+                
+                <!-- IMPORTANTE: Último suplente con botón adicional de añadir -->
+                <div class="player-row">
+                    <div class="player-label">Jugador Suplente 5</div>
+                    <div class="player-select-container">
+                        <div class="player-select">
+                            <span class="player-select-text">.</span>
+                            <i class="fas fa-chevron-down player-select-arrow"></i>
+                        </div>
+                        <button class="apply-btn">
+                            Aplicar <i class="fas fa-plus"></i>
+                        </button>
+                        <!-- Botón adicional para añadir más jugadores -->
+                        <button class="add-btn">
+                            Añadir <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- IMPORTANTE: Botones principales de acción al final del formulario -->
+        <div class="action-buttons">
+            <button class="add-button">Añadir</button>
+            <button class="cancel-button">Anular</button>
+        </div>
+    </main>
+
+    <!-- Pie de página estándar con información de contacto -->
+    <footer>
+        <!-- Estructura del footer omitida para brevedad -->
+    </footer>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportes FAP - Equipos</title>
+    <!-- Importamos Font Awesome para usar sus iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reseteo básico de estilos para eliminar márgenes y padding predeterminados */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Configuración básica del cuerpo de la página */
+        body {
+            min-height: 100vh; /* Altura mínima de toda la ventana */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+            background-color: #f9f9f9; /* Fondo gris muy claro */
+        }
+
+        /* ===== ESTILOS DEL ENCABEZADO ===== */
+        header {
+            background-color: #0a7c0a; /* Verde corporativo de Deportes FAP */
+            color: white;
+            padding: 0.8rem 2rem;
+            display: flex; /* Usamos flexbox para alinear elementos */
+            align-items: center;
+        }
+
+        /* Contenedor del logo y título */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Estilo del logo */
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        /* Estilo del título principal */
+        .header-title {
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Estilos de la navegación */
+        nav {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            flex-grow: 1; /* Permite que la navegación ocupe el espacio disponible */
+        }
+
+        /* Lista de enlaces de navegación */
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        }
+
+        /* Elementos de la lista de navegación */
+        nav ul li {
+            margin-right: 15px;
+        }
+
+        /* Enlaces de navegación */
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* ===== ESTILOS DEL CONTENIDO PRINCIPAL ===== */
+        main {
+            flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+            padding: 1.5rem;
+            max-width: 1200px; /* Limita el ancho máximo para mejor legibilidad */
+            margin: 0 auto; /* Centra el contenido */
+            width: 100%;
+        }
+
+        /* Título de la página */
+        .page-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        /* Contenedor del campo de búsqueda */
+        .search-container {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Campo de búsqueda con icono */
+        .search-input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            /* Añadimos un icono de lupa usando SVG en base64 */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>');
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 35px; /* Espacio para el icono */
+            font-size: 0.9rem;
+        }
+
+        /* ===== ESTILOS DE LA TABLA ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse; /* Elimina espacios entre celdas */
+        }
+
+        /* Encabezados de la tabla */
+        .data-table th {
+            background-color: #f5f5f5; /* Gris claro para los encabezados */
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Celdas de la tabla */
+        .data-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        /* Efecto hover en las filas */
+        .data-table tr:hover {
+            background-color: #f9f9f9; /* Cambia ligeramente el color al pasar el cursor */
+        }
+
+        /* Icono de edición (lápiz) */
+        .edit-icon {
+            color: #0a7c0a; /* Verde corporativo para el icono */
+            cursor: pointer; /* Cambia el cursor a mano para indicar que es clickeable */
+        }
+
+        /* ===== ESTILOS DE PAGINACIÓN ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        /* Elementos individuales de paginación (números) */
+        .pagination-item {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 3px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Estilo para la página activa */
+        .pagination-item.active {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+        }
+
+        /* Efecto hover en los elementos de paginación */
+        .pagination-item:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+
+        /* Flechas de navegación en la paginación */
+        .pagination-arrow {
+            color: #666;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        /* Puntos suspensivos en la paginación */
+        .pagination-dots {
+            color: #666;
+            margin: 0 5px;
+        }
+
+        /* ===== DISEÑO RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            /* Ajustes para el encabezado en pantallas pequeñas */
+            header {
+                flex-direction: column; /* Cambia a disposición vertical */
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            
+            nav {
+                margin-left: 0;
+            }
+            
+            /* Centra los elementos de navegación */
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 8px;
+            }
+            
+            /* Hace que la tabla sea desplazable horizontalmente */
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO: Contiene el logo, título y navegación -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de la Fuerza Aérea del Perú -->
+            <img src="logo.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+            <h1 class="header-title">Deportes FAP</h1>
+        </div>
+        <!-- Menú de navegación principal -->
+        <nav>
+            <ul>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Partidos</a></li>
+                <li><a href="#">Jugadores</a></li>
+                <li><a href="#">Comunicados</a></li>
+                <li><a href="#">Reclamos</a></li>
+                <li><a href="#">Correo</a></li>
+                <li><a href="#">Equipos</a></li>
+                <li><a href="#">Resultados</a></li>
+                <li><a href="#">Goleadores</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- Título de la sección -->
+        <h2 class="page-title">Equipos</h2>
+        
+        <!-- Campo de búsqueda con icono de lupa -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Buscar Equipo">
+        </div>
+        
+        <!-- Tabla de equipos -->
+        <table class="data-table">
+            <!-- Encabezados de la tabla -->
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Delegado</th>
+                    <th>Jugadores</th>
+                    <th></th> <!-- Columna para el icono de edición -->
+                </tr>
+            </thead>
+            <!-- Cuerpo de la tabla con los datos -->
+            <tbody>
+                <!-- Primera fila de datos -->
+                <tr>
+                    <td>SIL</td>
+                    <td>Cameroun</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td><i class="fas fa-pencil-alt edit-icon"></i></td> <!-- Icono de lápiz para editar -->
+                </tr>
+                <!-- Segunda fila de datos -->
+                <tr>
+                    <td>SIL</td>
+                    <td>Cameroun</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td><i class="fas fa-pencil-alt edit-icon"></i></td>
+                </tr>
+                <!-- Tercera fila de datos -->
+                <tr>
+                    <td>SIL</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td><i class="fas fa-pencil-alt edit-icon"></i></td>
+                </tr>
+                <!-- Cuarta fila de datos -->
+                <tr>
+                    <td>SIL</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td>VIE</td>
+                    <td><i class="fas fa-pencil-alt edit-icon"></i></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Sistema de paginación -->
+        <div class="pagination">
+            <!-- Flecha para ir a la página anterior -->
+            <span class="pagination-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <!-- Números de página -->
+            <span class="pagination-item active">1</span> <!-- Página actual -->
+            <span class="pagination-item">2</span>
+            <span class="pagination-item">3</span>
+            <!-- Puntos suspensivos para indicar páginas omitidas -->
+            <span class="pagination-dots">...</span>
+            <span class="pagination-item">8</span>
+            <span class="pagination-item">9</span>
+            <span class="pagination-item">10</span>
+            <!-- Flecha para ir a la página siguiente -->
+            <span class="pagination-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+        </div>
+    </main>
+    <!-- Fin del contenido principal -->
+</body>
+</html>

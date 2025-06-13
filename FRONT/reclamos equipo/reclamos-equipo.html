@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportes FAP - Reclamos</title>
+    <!-- Importamos Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reseteo básico de estilos para eliminar márgenes y padding predeterminados */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Configuración básica del cuerpo de la página */
+        body {
+            min-height: 100vh; /* Altura mínima de toda la ventana */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+            background-color: #f9f9f9; /* Fondo gris muy claro */
+        }
+
+        /* ===== ESTILOS DEL ENCABEZADO ===== */
+        header {
+            background-color: #0a7c0a; /* Verde corporativo de Deportes FAP */
+            color: white;
+            padding: 0.8rem 2rem;
+            display: flex; /* Usamos flexbox para alinear elementos */
+            align-items: center;
+        }
+
+        /* Contenedor del logo y título */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Estilo del logo */
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        /* Estilo del título principal */
+        .header-title {
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Estilos de la navegación */
+        nav {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            flex-grow: 1; /* Permite que la navegación ocupe el espacio disponible */
+        }
+
+        /* Lista de enlaces de navegación */
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        }
+
+        /* Elementos de la lista de navegación */
+        nav ul li {
+            margin-right: 15px;
+        }
+
+        /* Enlaces de navegación */
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* ===== ESTILOS DEL CONTENIDO PRINCIPAL ===== */
+        main {
+            flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+            padding: 1.5rem;
+            max-width: 1200px; /* Limita el ancho máximo para mejor legibilidad */
+            margin: 0 auto; /* Centra el contenido */
+            width: 100%;
+        }
+
+        /* Contenedor del título y botón agregar */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Título de la página */
+        .page-title {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Botón de agregar */
+        .add-button {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .add-button i {
+            margin-left: 5px;
+        }
+
+        /* ===== ESTILOS DEL FORMULARIO ===== */
+        .form-container {
+            border: 1px solid #d0e8d0; /* Borde verde claro */
+            border-radius: 8px;
+            padding: 1.5rem;
+            background-color: white;
+            margin-bottom: 2rem;
+        }
+
+        /* Título del formulario */
+        .form-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grupo de campos del formulario */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Etiquetas de los campos */
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        /* Contenedor del campo de selección */
+        .select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Estilo del campo de selección personalizado */
+        .custom-select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Texto dentro del select */
+        .select-text {
+            color: #999;
+        }
+
+        /* Flecha del select */
+        .select-arrow {
+            color: #666;
+        }
+
+        /* Campo de entrada de texto */
+        .form-input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Contenedor de botones de acción */
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Botón de añadir (verde) */
+        .submit-button {
+            background-color: #0a7c0a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.7rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            min-width: 120px;
+        }
+
+        /* Botón de cancelar (blanco) */
+        .cancel-button {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.7rem 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            min-width: 120px;
+        }
+
+        /* ===== ESTILOS DE PAGINACIÓN ===== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            align-items: center;
+        }
+
+        /* Elementos individuales de paginación (números) */
+        .pagination-item {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 3px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Estilo para la página activa */
+        .pagination-item.active {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+        }
+
+        /* Efecto hover en los elementos de paginación */
+        .pagination-item:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+
+        /* Flechas de navegación en la paginación */
+        .pagination-arrow {
+            color: #666;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        /* Puntos suspensivos en la paginación */
+        .pagination-dots {
+            color: #666;
+            margin: 0 5px;
+        }
+
+        /* ===== DISEÑO RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            /* Ajustes para el encabezado en pantallas pequeñas */
+            header {
+                flex-direction: column; /* Cambia a disposición vertical */
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+            
+            nav {
+                margin-left: 0;
+            }
+            
+            /* Centra los elementos de navegación */
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 8px;
+            }
+            
+            /* Ajustes para el formulario en pantallas pequeñas */
+            .form-container {
+                padding: 1rem;
+            }
+            
+            /* Ajustes para los botones de acción */
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .submit-button, .cancel-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO: Contiene el logo, título y navegación -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de la Fuerza Aérea del Perú -->
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-OlrefbYDGX4MCh1B0dbMgzmOPEyL5N.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+            <h1 class="header-title">Deportes FAP</h1>
+        </div>
+        <!-- Menú de navegación principal -->
+        <nav>
+            <ul>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Partidos</a></li>
+                <li><a href="#">Jugadores</a></li>
+                <li><a href="#">Comunicados</a></li>
+                <li><a href="#">Reclamos</a></li>
+                <li><a href="#">Correo</a></li>
+                <li><a href="#">Equipos</a></li>
+                <li><a href="#">Resultados</a></li>
+                <li><a href="#">Goleadores</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <!-- Encabezado de la página con título y botón de agregar -->
+        <div class="page-header">
+            <h2 class="page-title">Reclamos</h2>
+            <button class="add-button">
+                Agregar <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        
+        <!-- Formulario de reclamo dentro de un contenedor con borde -->
+        <div class="form-container">
+            <!-- Título del formulario -->
+            <h3 class="form-title">Equipo</h3>
+            
+            <!-- Campo para el nombre -->
+            <div class="form-group">
+                <label class="form-label">Nombre :</label>
+                <!-- Usamos un input de texto para el nombre -->
+                <input type="text" class="form-input" value=".">
+            </div>
+            
+            <!-- Campo para la década -->
+            <div class="form-group">
+                <label class="form-label">Década :</label>
+                <!-- Selector personalizado con flecha desplegable -->
+                <div class="select-container">
+                    <div class="custom-select">
+                        <span class="select-text">.</span>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Campo para el delegado -->
+            <div class="form-group">
+                <label class="form-label">Delegado :</label>
+                <!-- Selector personalizado con flecha desplegable -->
+                <div class="select-container">
+                    <div class="custom-select">
+                        <span class="select-text">.</span>
+                        <i class="fas fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones de acción del formulario -->
+            <div class="form-actions">
+                <button class="submit-button">Añadir</button>
+                <button class="cancel-button">Anular</button>
+            </div>
+        </div>
+        
+        <!-- Sistema de paginación -->
+        <div class="pagination">
+            <!-- Flecha para ir a la página anterior -->
+            <span class="pagination-arrow">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <!-- Números de página -->
+            <span class="pagination-item active">1</span> <!-- Página actual -->
+            <span class="pagination-item">2</span>
+            <span class="pagination-item">3</span>
+            <!-- Puntos suspensivos para indicar páginas omitidas -->
+            <span class="pagination-dots">...</span>
+            <span class="pagination-item">8</span>
+            <span class="pagination-item">9</span>
+            <span class="pagination-item">10</span>
+            <!-- Flecha para ir a la página siguiente -->
+            <span class="pagination-arrow">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+        </div>
+    </main>
+    <!-- Fin del contenido principal -->
+</body>
+</html>

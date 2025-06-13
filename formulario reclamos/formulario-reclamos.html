@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración para diseño responsive -->
+    <title>Deportes FAP - Formulario de Reclamo</title> <!-- Título de la página que aparece en la pestaña del navegador -->
+    <!-- Importamos Font Awesome para los iconos de redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== ESTILOS BÁSICOS Y RESETEO ===== */
+        * {
+            margin: 0; /* Elimina los márgenes predeterminados */
+            padding: 0; /* Elimina el padding predeterminado */
+            box-sizing: border-box; /* Hace que el padding no afecte al ancho total */
+            font-family: Arial, sans-serif; /* Fuente predeterminada para toda la página */
+        }
+
+        /* Configuración básica del cuerpo de la página */
+        body {
+            min-height: 100vh; /* Altura mínima de toda la ventana */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+        }
+
+        /* ===== ESTILOS DEL ENCABEZADO ===== */
+        header {
+            background-color: #0a7c0a; /* Verde corporativo de Deportes FAP */
+            color: white;
+            padding: 1rem 2rem; /* Espaciado interno: 1rem arriba/abajo, 2rem izquierda/derecha */
+            display: flex; /* Usamos flexbox para alinear elementos */
+            align-items: center; /* Centra verticalmente los elementos */
+        }
+
+        /* Contenedor del logo y título */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Estilo del logo */
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px; /* Espacio entre el logo y el texto */
+        }
+
+        /* Estilo del título principal */
+        .header-title {
+            margin-right: 20px; /* Espacio entre el título y la navegación */
+        }
+
+        /* Estilos de la navegación */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Lista de enlaces de navegación */
+        nav ul {
+            display: flex; /* Alinea los elementos horizontalmente */
+            list-style: none; /* Elimina los puntos de la lista */
+        }
+
+        /* Elementos de la lista de navegación */
+        nav ul li {
+            margin-left: 20px; /* Espacio entre elementos del menú */
+        }
+
+        /* Enlaces de navegación */
+        nav ul li a {
+            color: white;
+            text-decoration: none; /* Elimina el subrayado de los enlaces */
+        }
+
+        /* ===== ESTILOS DEL CONTENIDO PRINCIPAL ===== */
+        main {
+            display: flex; /* Crea un layout de dos columnas */
+            flex: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+        }
+
+        /* Contenedor de la imagen lateral */
+        .image-container {
+            flex: 1; /* Ocupa la mitad del espacio disponible */
+            overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+        }
+
+        /* Estilo de la imagen de fondo */
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Hace que la imagen cubra todo el contenedor manteniendo proporciones */
+        }
+
+        /* Contenedor del formulario */
+        .form-container {
+            flex: 1; /* Ocupa la mitad del espacio disponible */
+            padding: 3rem; /* Espaciado interno amplio */
+            display: flex;
+            flex-direction: column; /* Organiza los elementos en columna */
+        }
+
+        /* Título del formulario */
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Grupo de campos del formulario */
+        .form-group {
+            margin-bottom: 1.5rem; /* Espacio entre grupos de campos */
+        }
+
+        /* Etiquetas de los campos */
+        label {
+            display: block; /* Hace que la etiqueta ocupe toda la línea */
+            margin-bottom: 0.5rem;
+            font-weight: 500; /* Semi-negrita */
+        }
+
+        /* Campos de entrada de texto y áreas de texto */
+        input, textarea {
+            width: 100%; /* Ocupa todo el ancho disponible */
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Áreas de texto específicamente */
+        textarea {
+            min-height: 120px; /* Altura mínima para áreas de texto */
+            resize: vertical; /* Permite redimensionar solo verticalmente */
+        }
+
+        /* Botón de envío */
+        .submit-btn {
+            background-color: #0a7c0a; /* Verde corporativo */
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Efecto hover para el botón */
+        .submit-btn:hover {
+            background-color: #086108; /* Verde más oscuro al pasar el cursor */
+        }
+
+        /* ===== ESTILOS DEL PIE DE PÁGINA ===== */
+        footer {
+            background-color: #f0f0f0; /* Gris claro */
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between; /* Distribuye el espacio entre los elementos */
+            align-items: center;
+        }
+
+        /* Sección izquierda del footer */
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor del logo en el footer */
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tamaño del logo en el footer */
+        .footer-logo .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Título junto al logo en el footer */
+        .footer-logo h3 {
+            margin-left: 10px;
+        }
+
+        /* Enlaces en la sección central del footer */
+        .footer-center a {
+            margin-right: 15px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Contenedor de iconos de redes sociales */
+        .social-icons {
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: flex-end; /* Alinea los iconos a la derecha */
+        }
+
+        /* Iconos individuales de redes sociales */
+        .social-icons a {
+            margin-left: 15px;
+            color: #333;
+        }
+
+        /* Contenedor de badges de aplicaciones */
+        .app-badges {
+            display: flex;
+            justify-content: flex-end; /* Alinea los badges a la derecha */
+        }
+
+        /* Imágenes de badges de aplicaciones */
+        .app-badges img {
+            height: 35px;
+            margin-left: 10px;
+        }
+
+        /* ===== DISEÑO RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            /* Cambia el layout principal a vertical en pantallas pequeñas */
+            main {
+                flex-direction: column;
+            }
+            
+            /* Ajusta la altura de la imagen en pantallas pequeñas */
+            .image-container {
+                height: 300px;
+            }
+            
+            /* Reorganiza el footer en pantallas pequeñas */
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            /* Añade espacio entre secciones del footer en móviles */
+            .footer-left, .footer-center, .footer-right {
+                margin-bottom: 1rem;
+            }
+            
+            /* Centra los iconos sociales y badges en móviles */
+            .social-icons, .app-badges {
+                justify-content: center;
+            }
+            
+            /* Centra el logo del footer en móviles */
+            .footer-logo {
+                justify-content: center;
+            }
+            
+            /* Reorganiza el header en pantallas pequeñas */
+            header {
+                flex-direction: column;
+            }
+            
+            /* Ajusta el menú de navegación en móviles */
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas */
+                justify-content: center; /* Centra los elementos del menú */
+            }
+            
+            /* Ajusta el espaciado de los elementos del menú en móviles */
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO: Contiene el logo, título y navegación -->
+    <header>
+        <div class="logo-container">
+            <!-- Logo de la Fuerza Aérea del Perú -->
+            <img src="logo.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+            <h1 class="header-title">Deportes FAP</h1>
+        </div>
+        <!-- Menú de navegación principal -->
+        <nav>
+            <ul>
+                <li><a href="#">Reclamo</a></li>
+                <li><a href="#">Historial de reclamo</a></li>
+                <li><a href="#">Plantilla de Equipo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: Dividido en dos columnas -->
+    <main>
+        <!-- Columna izquierda: Imagen de fondo -->
+        <div class="image-container">
+            <!-- Imagen arquitectónica decorativa -->
+            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop" alt="Estructura arquitectónica" class="background-image">
+        </div>
+        
+        <!-- Columna derecha: Formulario de reclamo -->
+        <div class="form-container">
+            <h2>Formulario de Reclamo</h2>
+            
+            <!-- Formulario para enviar reclamos -->
+            <form>
+                <!-- Campo para el motivo del reclamo -->
+                <div class="form-group">
+                    <label for="motivo">Motivo</label>
+                    <input type="text" id="motivo" name="motivo" required>
+                </div>
+                
+                <!-- Campo para la descripción del problema -->
+                <div class="form-group">
+                    <label for="descripcion">Descripcion del problema</label>
+                    <textarea id="descripcion" name="descripcion" placeholder="Tell us a little about the project..." required></textarea>
+                </div>
+                
+                <!-- Campo para la solicitud concreta -->
+                <div class="form-group">
+                    <label for="solicitud">Solicitud concreta del reclamo</label>
+                    <textarea id="solicitud" name="solicitud" placeholder="Tell us a little about the project..." required></textarea>
+                </div>
+                
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="submit-btn">Get started</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA: Dividido en tres secciones -->
+    <footer>
+        <!-- Sección izquierda: Logo, nombre y copyright -->
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-OlrefbYDGX4MCh1B0dbMgzmOPEyL5N.png" alt="Logo Fuerza Aérea del Perú" class="logo">
+                <h3>Deportes FAP</h3>
+            </div>
+            <p>© 2023 Fuerza Aérea del Perú. Todos los derechos reservados.</p>
+        </div>
+        
+        <!-- Sección central: Enlaces a páginas de información -->
+        <div class="footer-center">
+            <a href="#">Privacidad</a>
+            <a href="#">Soporte</a>
+        </div>
+        
+        <!-- Sección derecha: Redes sociales y badges de aplicaciones -->
+        <div class="footer-right">
+            <!-- Iconos de redes sociales -->
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <!-- Badges de descarga de aplicaciones -->
+            <div class="app-badges">
+                <a href="#"><img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="App Store"></a>
+                <a href="#"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
