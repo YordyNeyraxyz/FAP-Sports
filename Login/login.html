@@ -4,22 +4,18 @@
   <!-- Configuración básica del documento -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- Título de la página de login -->
   <title>Login - Deportes FAP</title>
   <!-- Enlaces a hojas de estilo y fuentes -->
   <link rel="stylesheet" href="styles.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Fuente Merriweather para textos -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Encabezado de la página -->
   <header>
     <div class="header-content">
-      <!-- Logo de la institución -->
       <img src="../logo.png" alt="Escudo Fuerza Aérea del Perú" class="logo-header">
-      <!-- Título principal -->
       <h2 class="titulo-header">Deportes FAP</h2>
     </div>
   </header>
@@ -31,38 +27,51 @@
       <div class="login-box">
         <h1>Iniciar Sesión</h1>
         <p>¡Bienvenido de nuevo! Introduce tus datos.</p>
+        
         <!-- Formulario de login -->
         <form>
           <!-- Campo para correo electrónico -->
           <label for="correo">Correo</label>
           <input type="email" id="correo" placeholder="Ingrese su correo" required />
+          <!-- PRUEBA: Verificar que el campo #correo exista y sea obligatorio -->
 
           <!-- Campo para contraseña -->
           <label for="contrasena">Contraseña</label>
           <input type="password" id="contrasena" placeholder="********" required />
+          <!-- PRUEBA: Verificar que el campo #contrasena exista y sea obligatorio -->
 
           <!-- Enlace para recuperar contraseña -->
           <a href="#" class="olvide">Olvidé mi contraseña</a>
+          <!-- PRUEBA: Validar que el enlace contenga el texto correcto y sea clickeable -->
+
           <!-- Botón principal de submit -->
           <button type="submit" class="btn-principal">Iniciar Sesión</button>
+          <!-- PRUEBA: Verificar que al hacer clic sin datos, no se envíe el formulario (validación HTML5) -->
+          <!-- PRUEBA: Con datos válidos, simular envío -->
 
           <!-- Botón alternativo de login con Google -->
           <button type="button" class="btn-google">
             <img src="https://www.google.com/favicon.ico" alt="Google" />
             Ingresar con Google
           </button>
+          <!-- PRUEBA: Confirmar que el botón de Google es visible y contiene imagen con src que incluya 'google' -->
 
           <!-- Enlace para registro de nuevos usuarios -->
           <p class="registro">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+          <!-- PRUEBA: Validar contenido del enlace de registro -->
+
         </form>
+
         <!-- Enlace para volver al inicio -->
         <a href="#" class="inicio">Página de Inicio</a>
+        <!-- PRUEBA: Verificar que el enlace "Página de Inicio" sea visible y funcional -->
       </div>
     </div>
 
     <!-- Sección de imagen decorativa -->
     <div class="imagen-container">
       <img src="Banner_Login.png" alt="Jugador de fútbol" class="imagen-futbol"/>
+      <!-- PRUEBA: Confirmar que la imagen de fondo se carga correctamente -->
     </div>
   </div>
 </body>
