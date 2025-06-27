@@ -192,3 +192,164 @@ footer .redes img {
   width: 32px;  /* Ancho fijo */
   margin: 0 0.5em;  /* Margen horizontal */
 }
+
+/* Responsive para menú desplegable */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+  }
+
+  .nav-links.show {
+    max-height: 500px;
+    padding: 10px 0;
+  }
+
+  .nav-links a {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .top-header {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .left-header {
+    flex: 1;
+  }
+
+  .right-header {
+    gap: 10px;
+  }
+
+  .titulo-header {
+    font-size: 1.2rem;
+  }
+
+  .login-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ------------- RESPONSIVE DESIGN ------------- */
+
+/* Para tablets (pantallas hasta 1024px) */
+@media (max-width: 1024px) {
+  .noticias-main {
+    flex-direction: column;
+    padding: 0 10px;
+  }
+
+  .noticia-principal,
+  .noticias-secundarias {
+    width: 100%;
+  }
+
+  .noticia-secundaria {
+    flex-direction: row;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* Para celulares (pantallas hasta 768px) */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .left-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .login-btn {
+    align-self: flex-end;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .noticia-texto h2 {
+    font-size: 1.4rem;
+  }
+
+  .noticia-secundaria {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .noticia-secundaria img {
+    width: 80%;
+    height: auto;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  footer nav a {
+    margin: 6px;
+  }
+
+  footer .redes img {
+    margin: 0.5rem;
+  }
+}
+
+/* Para pantallas muy pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+  .titulo-header {
+    font-size: 1.2rem;
+  }
+
+  .noticia-texto h2 {
+    font-size: 1.2rem;
+  }
+
+  .noticia-secundaria h3 {
+    font-size: 0.95rem;
+  }
+
+  .noticia-secundaria p {
+    font-size: 0.8rem;
+  }
+
+  .login-btn {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  footer {
+    padding: 1rem;
+  }
+
+  .noticia-secundaria img {
+    width: 100%;
+    max-width: 250px;
+  }
+}
