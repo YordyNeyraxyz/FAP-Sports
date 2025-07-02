@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h1>Registro de Usuario</h1>
+
+    <form th:action="@{/registro}" method="post">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+        </div>
+        <div>
+            <label for="contrasenia">Contraseña:</label>
+            <input type="password" id="contrasenia" name="contrasenia" required>
+        </div>
+        <div>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+        </div>
+        <div>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required>
+        </div>
+
+        <div>
+            <label>Roles:</label>
+            <th:block th:each="rol : ${roles}">
+                <div>
+                    <input type="checkbox" th:id="${'rol-' + rol.id}" th:name="roles" th:value="${rol.id}" />
+                    <label th:for="${'rol-' + rol.id}" th:text="${rol.nombre}"></label>
+                </div>
+            </th:block>
+        </div>
+
+        <button type="submit">Registrar</button>
+
+        <div th:if="${error}" th:text="${error}" style="color: red;"></div>
+    </form>
+</body>
+</html>
