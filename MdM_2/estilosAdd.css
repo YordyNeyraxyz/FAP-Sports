@@ -1,0 +1,260 @@
+/* RESET GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CUERPO */
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: #007c1a;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.titulo-fap {
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CALENDARIO */
+.calendario {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+
+.calendario div {
+  margin: 5px;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.calendario .activo {
+  background: #d3f3da;
+  color: #007c1a;
+}
+
+/* CONTENIDO PRINCIPAL */
+main {
+  padding: 20px 40px;
+}
+
+.partido {
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.partido.principal {
+  background: #e0e0e0;
+  position: relative;
+}
+
+.equipo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.equipo img {
+  height: 35px;
+}
+
+.versus {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.input-puntaje {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-puntaje input {
+  width: 40px;
+  padding: 3px;
+  text-align: center;
+}
+
+.btn {
+  position: absolute;
+  right: 20px;
+  background: #007c1a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  background-color: #c8deca;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Merriweather', serif;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.footer-content nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.footer-content nav a:hover {
+  color: #1b8f34;
+}
+
+/* Íconos de redes sociales */
+.footer-content .redes img{
+  width: 28px;
+  margin: 0 5px;
+}
+
+/* Logo en footer */
+.logo-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-footer img {
+  height: 35px;
+}
+
+/* ========================== */
+/*     DISEÑO RESPONSIVE      */
+/* ========================== */
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  nav {
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .titulo-fap {
+    font-size: 1.3rem;
+  }
+
+  .calendario {
+    justify-content: center;
+  }
+
+  .partido {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn {
+    position: static;
+    margin-top: 10px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+
+  footer nav {
+    margin: 10px 0;
+  }
+
+  .redes {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-fap {
+    font-size: 1.1rem;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .versus {
+    font-size: 20px;
+  }
+
+  .input-puntaje input {
+    width: 35px;
+  }
+
+  footer .redes img {
+    width: 28px;
+  }
+}

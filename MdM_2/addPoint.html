@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Puntajes - Deportes FAP</title>
+  
+  <!-- Enlace a hoja de estilos externa -->
+  <link rel="stylesheet" href="estilosAdd.css"/>
+
+  <!-- Carga de fuentes desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fugaz+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado de la página con logo y navegación -->
+  <header>
+    <div class="logo">
+      <img src="../logo.png" alt="Logo Deportes FAP"> <!-- Imagen del logo -->
+      <span class="titulo-fap">Deportes FAP</span> <!-- Título con fuente Merriweather -->
+    </div>
+    <nav>
+      <a href="#">Registrar Resultados</a>
+      <a href="#">Registrar Goleadores</a>
+    </nav>
+  </header>
+
+  <!-- Calendario de días de la semana -->
+  <section class="calendario">
+    <div>Lun<br>18</div>
+    <div>Mar<br>19</div>
+    <div>Mié<br>20</div>
+    <div class="activo">Jue<br>21</div> <!-- Día activo -->
+    <div>Vie<br>22</div>
+    <div>Sáb<br>23</div>
+    <div>Dom<br>24</div>
+  </section>
+
+  <!-- Sección principal de partidos -->
+  <main>
+    <!-- Partido principal con botón para añadir puntajes -->
+    <div class="partido principal">
+      <div class="equipo">
+        <span>CHELSEA</span>
+        <img src="chelsea.png" alt="Chelsea">
+      </div>
+      <div class="versus">VS</div>
+      <div class="equipo">
+        <img src="manutd.png" alt="Man Utd">
+        <span>MAN UTD</span>
+      </div>
+      <button class="btn">Añadir Puntajes +</button>
+    </div>
+
+    <!-- Repetición de partidos con inputs para puntajes -->
+    <div class="partido">
+      <div class="input-puntaje">
+        <label>Puntaje:</label>
+        <input type="number" />
+      </div>
+      <div class="equipo">
+        <span>CHELSEA</span>
+        <img src="chelsea.png" alt="Chelsea">
+      </div>
+      <div class="versus">VS</div>
+      <div class="equipo">
+        <img src="manutd.png" alt="Man Utd">
+        <span>MAN UTD</span>
+      </div>
+      <div class="input-puntaje">
+        <label>Puntaje:</label>
+        <input type="number" />
+      </div>
+    </div>
+
+    <!-- Otro partido -->
+    <div class="partido">
+      <div class="input-puntaje">
+        <label>Puntaje:</label>
+        <input type="number" />
+      </div>
+      <div class="equipo">
+        <span>CHELSEA</span>
+        <img src="chelsea.png" alt="Chelsea">
+      </div>
+      <div class="versus">VS</div>
+      <div class="equipo">
+        <img src="manutd.png" alt="Man Utd">
+        <span>MAN UTD</span>
+      </div>
+      <div class="input-puntaje">
+        <label>Puntaje:</label>
+        <input type="number" />
+      </div>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div class="footer-content">
+      <div class="logo-footer">
+        <img src="../logo.png" alt="Logo">
+        <span class="title-fap">Deportes FAP</span>
+      </div>
+      <p>© 2023 Company Name, Inc. All rights reserved.</p>
+      <nav>
+        <!-- Enlaces secundarios -->
+        <a href="#">Privacidad</a>
+        <a href="#">Soporte</a>
+      </nav>
+      <!-- Íconos de redes sociales -->
+      <div class="redes">
+        <a href="#"><img src="../youtube_logo.png" alt="YouTube"/></a>
+        <a href="#"><img src="../facebook_logo.png" alt="Facebook"/></a>
+        <a href="#"><img src="../twitter_logo.png" alt="Twitter"/></a>
+        <a href="#"><img src="../instagram_logo.png" alt="Instagram"/></a>
+        <a href="#"><img src="../linkedin_logo.png" alt="LinkedIn"/></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

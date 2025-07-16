@@ -1,0 +1,202 @@
+/* ===== RESETEO BÁSICO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: #007c1a;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.titulo-fap {
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+main {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+/* Fila del formulario */
+.form-goleadores .fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.fila label {
+  min-width: 70px;
+  font-weight: bold;
+}
+
+/* Inputs y selects */
+.fila select,
+.fila input {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+/* Estilo para la última fila con botón */
+.input-con-boton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-btn {
+  background-color: #007c1a;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Botones de acción */
+.acciones {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-verde {
+  background-color: #007c1a;
+  color: white;
+}
+
+.btn-blanco {
+  background-color: white;
+  color: #007c1a;
+  border: 2px solid #007c1a;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #c8deca;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Merriweather', serif;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.footer-content nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.footer-content nav a:hover {
+  color: #1b8f34;
+}
+
+/* Íconos de redes sociales */
+.footer-content .redes img{
+  width: 28px;
+  margin: 0 5px;
+}
+
+/* Logo en footer */
+.logo-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-footer img {
+  height: 35px;
+}
+
+/* ===== MEDIA QUERIES (RESPONSIVE) ===== */
+@media (max-width: 768px) {
+  .form-goleadores .fila {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+  }
+}
