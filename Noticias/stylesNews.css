@@ -174,26 +174,53 @@ footer {
   flex-wrap: wrap;  /* Permite wrap en pantallas pequeñas */
 }
 
-/* Enlaces del footer */
-footer nav a {
-  margin-right: 1rem;  /* Margen derecho */
-  color: #333;  /* Color de texto */
-  text-decoration: none;  /* Sin subrayado */
+/* FOOTER */
+footer {
+  background-color: #c8deca;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #ddd;
+  margin-top: 60px;
 }
 
-/* Efecto hover para enlaces del footer */
-footer nav a:hover {
-  color: #1b8f34;  /* Color verde */
-  text-decoration: underline;  /* Subrayado */
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Merriweather', serif;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
 }
 
-/* Iconos de redes sociales */
-footer .redes img {
-  width: 32px;  /* Ancho fijo */
-  margin: 0 0.5em;  /* Margen horizontal */
+.footer-content nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
-/* Responsive para menú desplegable */
+.footer-content nav a:hover {
+  color: #1b8f34;
+}
+
+/* Íconos de redes sociales */
+.footer-content .redes img{
+  width: 28px;
+  margin: 0 5px;
+}
+
+/* Logo en footer */
+.logo-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-footer img {
+  height: 35px;
+}
+
+/* Para tablets (pantallas hasta 1024px) */
 @media (max-width: 1024px) {
   .menu-toggle {
     display: block;
@@ -239,12 +266,7 @@ footer .redes img {
     padding: 6px 12px;
     font-size: 0.9rem;
   }
-}
 
-/* ------------- RESPONSIVE DESIGN ------------- */
-
-/* Para tablets (pantallas hasta 1024px) */
-@media (max-width: 1024px) {
   .noticias-main {
     flex-direction: column;
     padding: 0 10px;

@@ -61,18 +61,18 @@ nav a:hover {
 
 /* Estilos del botón de login */
 .login-btn {
-  background-color: #1b8f34;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  background-color: #1b8f34;  /* Color verde */
+  color: white;  /* Texto blanco */
+  padding: 8px 16px;  /* Espaciado interno */
+  border: none;  /* Sin borde */
+  border-radius: 5px;  /* Esquinas redondeadas */
+  cursor: pointer;  /* Cursor tipo pointer */
+  transition: background-color 0.2s;  /* Transición suave */
 }
 
 /* Efecto hover para el botón de login */
 .login-btn:hover {
-  background-color: #15732a;
+  background-color: #15732a;  /* Color verde oscuro */
 }
 
 /* Estilos del calendario semanal */
@@ -169,36 +169,255 @@ main {
   padding: 4px 6px;
 }
 
-/* Estilos del footer */
+/* FOOTER */
 footer {
   background-color: #c8deca;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-top: 1px solid #ddd;
+  margin-top: 60px;
 }
 
-/* Contenedor del footer */
 .footer-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Merriweather', serif;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
 }
 
-/* Enlaces del footer */
-footer nav a {
-  margin-right: 1rem;
-  color: #333;
+.footer-content nav a {
+  margin: 0 0.5rem;
   text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
 
-/* Efecto hover para los enlaces del footer */
-footer nav a:hover {
+.footer-content nav a:hover {
   color: #1b8f34;
-  text-decoration: underline;
 }
 
-/* Iconos de redes sociales en el footer */
-footer .redes img {
-  width: 40px;
-  margin: 0 1em;
+/* Íconos de redes sociales */
+.footer-content .redes img{
+  width: 28px;
+  margin: 0 5px;
+}
+
+/* Logo en footer */
+.logo-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-footer img {
+  height: 35px;
+}
+
+/* Oculta checkbox por defecto */
+#menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  color: #1b8f34;
+  padding: 6px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Estilo del menú base */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* -------------------- Responsive Design -------------------- */
+
+/* Tablets (pantallas menores a 992px) */
+@media (max-width: 991px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .left-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+  }
+
+  .calendar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .match {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team {
+    justify-content: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .redes {
+    justify-content: center;
+  }
+}
+
+/* Móviles (pantallas menores a 768px) */
+@media (max-width: 767px) {
+  .left-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    font-weight: bold;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .titulo-header {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    align-self: flex-end;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .calendar div {
+    padding: 4px 6px;
+    font-size: 0.85em;
+  }
+
+  .match {
+    padding: 12px;
+  }
+
+  .footer-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .logo-footer {
+    flex-direction: column;
+  }
+
+  .redes img {
+    width: 24px;
+  }
+
+  .team img {
+  width: 24px;
+  height: 24px;
+}
+
+  .left-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    font-weight: bold;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  #menu-toggle:checked + .hamburger + .nav-menu {
+    display: flex;
+  }
+
+  .nav-menu a,
+  .nav-menu .login-btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+    float: right;
+  }
+
+  .nav-menu a:last-child,
+  .nav-menu .login-btn:last-child {
+    border-bottom: none;
+  }
+
+  .nav-menu .login-btn {
+    border: none;
+    background-color: #1b8f34;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.95em;
+    align-self: flex-end;
+  }
+
+  .nav-menu .login-btn:hover {
+    background-color: #15732a;
+  }
 }
