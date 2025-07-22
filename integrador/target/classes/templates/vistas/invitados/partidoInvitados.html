@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/invitado/stylePartidos.css}">
     <link rel="stylesheet" th:href="@{/css/invitado/styleNoticias.css}">
+    <link rel="stylesheet" th:href="@{/css/invitado/styleHeader.css}">
 </head>
 <body>
     <!-- ENCABEZADO: Contiene el logo, título y navegación -->
@@ -18,7 +19,7 @@
             <th:block th:each="fecha : ${partidosPorFecha.keySet()}">
                 <a style="text-decoration: none;" th:href="@{/partidoInvitados(fecha=${fecha})}">
                     <div class="day" th:classappend="${fecha == fechaSeleccionada} ? 'active' : ''">
-                        <h2 class="nombre-mes" th:switch="${fechaSeleccionada.month.name()}">
+                        <h2 class="nombre-mes" style="color: rgb(2, 143, 2);" th:switch="${fecha.month.name()}">
                             <span th:case="'JANUARY'">Ene</span>
                             <span th:case="'FEBRUARY'">Feb</span>
                             <span th:case="'MARCH'">Mar</span>
@@ -51,6 +52,9 @@
         </div>
 
         <div class="match-group">
+            <th:block th:if="${#lists.isEmpty(partidos)}">
+                <p style="text-align: center; font-size: 1.4rem; padding: 20px; color: gray; font-style: italic;">No hay partidos programados por el momento</p>
+            </th:block>
 
             <th:block th:each="partido : ${partidos}">
                 <div class="match"> 
@@ -71,7 +75,8 @@
                     </div>
                 </div>
             </th:block>
-        </div> 
+        </div>
+
     </main>
 
     <!-- PIE DE PÁGINA: Dividido en tres secciones -->

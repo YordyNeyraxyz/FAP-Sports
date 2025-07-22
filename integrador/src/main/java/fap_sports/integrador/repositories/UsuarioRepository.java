@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    // Método para verificar si existe un usuario con el email dado
+    // Método para verificar si existe un usuario con el email
     boolean existsByEmail(String email);
 
-    // Método para verificar si existe un usuario con el DNI dado
+    // Método para verificar si existe un usuario con el DNI
     boolean existsByDni(String dni);
 
-    // Método para verificar si existe un usuario con el teléfono dado
+    // Método para verificar si existe un usuario con el teléfono
     boolean existsByTelefono(String telefono);
 }

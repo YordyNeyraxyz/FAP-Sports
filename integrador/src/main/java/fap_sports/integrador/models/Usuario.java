@@ -61,7 +61,9 @@ public class Usuario {
     )
     private List<Rol> roles;
 
+    
     // Métodos get y set
+
     public String getNombre() {
         return nombre;
     }

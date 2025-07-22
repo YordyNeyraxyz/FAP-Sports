@@ -19,7 +19,10 @@ public class Rol {
     @ManyToMany(mappedBy = "roles")
     private List<Usuario> usuarios; // Relación con Usuario
 
+
+
     // Métodos get y set
+    
     public Long getRolId() {
         return rolId;
     }

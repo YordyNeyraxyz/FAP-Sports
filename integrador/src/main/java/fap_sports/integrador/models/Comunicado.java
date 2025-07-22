@@ -4,8 +4,9 @@ import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
+// Clase que representa la entidad Comunicado en la base de datos
 @Entity
-@Table(name = "comunicados") // Mapea esta clase a la tabla 'comunicados' en la base de datos
+@Table(name = "comunicados") // Especifica el nombre de la tabla en la base de datos
 public class Comunicado {
 
     @Id
@@ -22,7 +23,7 @@ public class Comunicado {
     @Column(name = "com_fecha_publicacion") // Columna para el título del comunicado
     private LocalDate comFechaPublicacion;
 
-    @Column(name = "com_contenido") // Columna para la descripción del comunicado
+    @Column(name = "com_contenido") // Columna para el contenido del comunicado
     private String comContenido;
 
     @Column(name = "com_documento") // Columna para almacenar la ruta o URL de la imagen asociada al comunicado
@@ -31,11 +32,13 @@ public class Comunicado {
     @Column(name = "com_estado") // Columna para almacenar la ruta o URL de la imagen asociada al comunicado
     private String comEstado;
 
+
     // Constructor vacío requerido por JPA
     public Comunicado() {
     }
 
     // Metodos getters y setters
+
     public Long getComId() {
         return comId;
     }

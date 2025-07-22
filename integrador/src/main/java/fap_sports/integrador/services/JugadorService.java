@@ -1,6 +1,6 @@
 package fap_sports.integrador.services;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import fap_sports.integrador.models.Decada;
 import fap_sports.integrador.models.Equipo;
 import fap_sports.integrador.models.Jugador;
-import fap_sports.integrador.models.Licenciado;
+//import fap_sports.integrador.models.Licenciado;
 import fap_sports.integrador.repositories.DecadaRepository;
 import fap_sports.integrador.repositories.EquipoRepository;
 import fap_sports.integrador.repositories.JugadorRepository;

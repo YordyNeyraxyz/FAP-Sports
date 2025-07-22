@@ -4,6 +4,8 @@
   <head th:replace="~{componentes/invitado/head :: head}"></head>
   <link rel="stylesheet" th:href="@{/css/invitado/styleContactanos.css}">
   <link rel="stylesheet" th:href="@{/css/invitado/styleNoticias.css}">
+  <link rel="stylesheet" th:href="@{/css/invitado/styleHeader.css}">
+  <link rel="stylesheet" th:href="@{/css/invitado/stylePartidos.css}">
   <!-- Enlace a la hoja de estilos CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,5 +47,8 @@
       <img th:src="@{/imagenes/invitado/contactanos/img_contactanos.jpg}" alt="contactanos" class="imagen-registro">
     </div>
   </div>
+
+  <!-- PIE DE PÁGINA: Dividido en tres secciones -->
+  <footer th:replace="~{componentes/miembroMesa/footer :: footer}"></footer>
 </body>
 </html>

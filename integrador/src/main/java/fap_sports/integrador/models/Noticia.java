@@ -5,7 +5,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "noticias") // Mapea esta clase a la tabla 'comunicados' en la base de datos
+@Table(name = "noticias") // Mapea esta clase a la tabla 'noticias' en la base de datos
 public class Noticia {
 
     @Id

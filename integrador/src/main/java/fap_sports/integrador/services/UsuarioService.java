@@ -37,7 +37,6 @@ public class UsuarioService {
     private RolRepository rolRepository;
 
     // Constructor con inyección de dependencias necesarias
-    @Autowired
     public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;

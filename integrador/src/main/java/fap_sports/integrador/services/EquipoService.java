@@ -12,6 +12,7 @@ import fap_sports.integrador.models.Rol;
 import fap_sports.integrador.models.Usuario;
 import fap_sports.integrador.repositories.DecadaRepository;
 import fap_sports.integrador.repositories.EquipoRepository;
+import fap_sports.integrador.repositories.JugadorRepository;
 import fap_sports.integrador.repositories.RolRepository;
 
 @Service
@@ -27,6 +28,10 @@ public class EquipoService {
     // Inyección del repositorio para manejar datos de roles
     @Autowired
     private RolRepository rolRepository;
+
+    // Inyección del repositorio para manejar datos del jugador
+    @Autowired
+    private JugadorRepository jugadorRepository;
 
     // Método para registrar o guardar un nuevo equipo
     public Equipo registrarEquipo(Equipo equipo) {
@@ -80,5 +85,29 @@ public class EquipoService {
     public List<Usuario> getUsuariosPorRol(String rolNombre) {
         Rol rolDelegado = rolRepository.findByNombre(rolNombre);
         return rolDelegado != null ? rolDelegado.getUsuarios() : new ArrayList<>();
+    }
+
+    // Obtener equipos que pertenecen a una década específica
+    public List<Equipo> obtenerEquiposPorDecada(Long decadaId) {
+        return equipoRepository.findByDecada_DecId(decadaId);
+    }
+
+    // Obtener equipos que pertenecen a un año especifico
+    public List<Equipo> obtenerEquiposPorAnioDecada(Long decadaId) {
+        Decada decada = decadaRepository.findById(decadaId)
+            .orElseThrow(() -> new RuntimeException("Década no encontrada"));
+        
+        return equipoRepository.findByAnioInicio(decada.getAnioInicio());
+    }
+
+    // Obtener equipos por medio de sus Id's
+    public List<Equipo> obtenerEquiposPorIds(List<Long> ids) {
+        return equipoRepository.findAllById(ids);
+    }
+
+    //Metodo para verificar si un equipo tiene jugadores registrados
+    public boolean tieneJugadores(Long equipoId) {
+        // Lógica para verificar si el equipo tiene jugadores
+        return jugadorRepository.existsByEquipoEquId(equipoId);
     }
 }

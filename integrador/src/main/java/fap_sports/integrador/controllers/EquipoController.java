@@ -10,15 +10,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fap_sports.integrador.repositories.EquipoRepository;
+//import fap_sports.integrador.repositories.EquipoRepository;
 import fap_sports.integrador.models.Decada;
-import fap_sports.integrador.models.Rol;
+//import fap_sports.integrador.models.Rol;
 import fap_sports.integrador.models.Usuario;
 import fap_sports.integrador.models.Equipo;
 import fap_sports.integrador.services.EquipoService;
 import fap_sports.integrador.services.UsuarioService;
 
+// Clase controladora para manejar las solicitudes relacionadas con los equipos
 @Controller
 public class EquipoController {
 
@@ -44,7 +46,7 @@ public class EquipoController {
         model.addAttribute("delegados", delegados);
 
         // Muestra la vista que contiene el formulario de equipos
-        return "vistas/equipos";
+        return "vistas/administrador/equipo/equipos";
     }
 
     @PostMapping("/registrarEquipos")
@@ -71,7 +73,12 @@ public class EquipoController {
     }
     // Eliminar un equipo por su ID
     @PostMapping("/eliminarEquipo/{id}")
-    public String eliminarEquipo(@PathVariable Long id) {
+    public String eliminarEquipo(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (equipoService.tieneJugadores(id)) {
+            redirectAttributes.addFlashAttribute("error", "No se puede eliminar el equipo porque tiene jugadores registrados.");
+            return "redirect:/formularioEquipos";
+        }
+
         equipoService.eliminarEquipo(id);
         return "redirect:/formularioEquipos";
     }
@@ -82,11 +89,11 @@ public class EquipoController {
         Equipo equipo = equipoService.getEquipoById(id);
         model.addAttribute("equipos", equipo);
         model.addAttribute("decadas", usuarioService.getAllDecadas());
-                // Obtiene los usuarios que tienen el rol de "DELEGADO" para asignarlos a un equipo
+        // Obtiene los usuarios que tienen el rol de "DELEGADO" para asignarlos a un equipo
         List<Usuario> delegados = equipoService.getUsuariosPorRol("DELEGADO");
         model.addAttribute("delegados", delegados);
         // model.addAttribute("roles", usuarioService.getAllRoles()); // Activar si es necesario
-        return "vistas/editarEquipo";
+        return "vistas/administrador/equipo/editarEquipo";
     }
 
     // Procesa la actualización de un usuario

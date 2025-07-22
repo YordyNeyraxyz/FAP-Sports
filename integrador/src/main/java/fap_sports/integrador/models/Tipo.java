@@ -15,7 +15,11 @@ public class Tipo {
     @Column(name = "tipo_nombre")
     private String tipoNombre;
 
+
+
     // Métodos get y set
+
+    
     public Long getTipoId() {
         return tipoId;
     }

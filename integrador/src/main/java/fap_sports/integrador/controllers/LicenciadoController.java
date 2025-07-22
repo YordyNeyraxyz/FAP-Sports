@@ -16,62 +16,63 @@ import fap_sports.integrador.models.Licenciado;
 import fap_sports.integrador.models.Tipo;
 import fap_sports.integrador.services.LicenciadoService;
 
+// Clase controladora para manejar las operaciones relacionadas con licenciados
 @Controller
 public class LicenciadoController {
 
     @Autowired
-    private LicenciadoService licenciadoService;
+    private LicenciadoService licenciadoService; // Inyección del servicio de licenciados
 
     // Muestra el formulario de registro de licenciado junto con listas de tipos, décadas y licenciados
     @GetMapping("/registrolicenciado")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("licenciado", new Licenciado());
-        model.addAttribute("tipos", licenciadoService.getAllTipos());
-        model.addAttribute("decadas", licenciadoService.getAllDecadas());
-        model.addAttribute("licenciados", licenciadoService.getAllLicenciados());
-        return "vistas/registroLic";
+        model.addAttribute("licenciado", new Licenciado()); // Crea un nuevo objeto Licenciado
+        model.addAttribute("tipos", licenciadoService.getAllTipos()); // Obtiene todos los tipos
+        model.addAttribute("decadas", licenciadoService.getAllDecadas()); // Obtiene todas las décadas
+        model.addAttribute("licenciados", licenciadoService.getAllLicenciados()); // Obtiene todos los licenciados
+        return "vistas/registroLic"; // Retorna la vista de registro de licenciado
     }
 
     // Procesa el registro de un nuevo licenciado, asignando tipo y década seleccionados
     @PostMapping("/registrolicenciado")
     public String registerLicenciado(@ModelAttribute Licenciado licenciado, @RequestParam Long tipoId, @RequestParam Long decId) {
-        Tipo tipo = licenciadoService.getTipoById(tipoId);
-        Decada decada = licenciadoService.getDecadaById(decId);
-        licenciado.setTipo(tipo);
-        licenciado.setDecada(decada);
-        licenciadoService.registerLicenciado(licenciado);
+        Tipo tipo = licenciadoService.getTipoById(tipoId); // Obtiene el tipo por ID
+        Decada decada = licenciadoService.getDecadaById(decId); // Obtiene la década por ID
+        licenciado.setTipo(tipo); // Asigna el tipo al licenciado
+        licenciado.setDecada(decada); // Asigna la década al licenciado
+        licenciadoService.registerLicenciado(licenciado); // Registra el nuevo licenciado
         return "redirect:/registrolicenciado";  // Redirige para evitar reenvío de formulario
     }
 
     // Muestra la lista de todos los licenciados registrados
     @GetMapping("/licenciados")
     public String listLicenciados(Model model) {
-        List<Licenciado> licenciados = licenciadoService.getAllLicenciados();
-        model.addAttribute("licenciados", licenciados);
-        return "vistas/licenciados";
+        List<Licenciado> licenciados = licenciadoService.getAllLicenciados(); // Obtiene todos los licenciados
+        model.addAttribute("licenciados", licenciados); // Agrega la lista de licenciados al modelo
+        return "vistas/licenciados"; // Retorna la vista de licenciados
     }
 
     // Elimina un licenciado por ID y redirige a la página de registro
     @PostMapping("/eliminarlicenciado/{id}")
     public String deleteLicenciado(@PathVariable Long id) {
-        licenciadoService.deleteLicenciado(id);
-        return "redirect:/registrolicenciado";
+        licenciadoService.deleteLicenciado(id); // Elimina el licenciado por ID
+        return "redirect:/registrolicenciado"; // Redirige a la página de registro
     }
 
     // Muestra el formulario para editar un licenciado existente, cargando datos y listas de tipos y décadas
     @GetMapping("/editarlicenciado/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
-        Licenciado licenciado = licenciadoService.getLicenciadoById(id);
-        model.addAttribute("licenciado", licenciado);
-        model.addAttribute("tipos", licenciadoService.getAllTipos());
-        model.addAttribute("decadas", licenciadoService.getAllDecadas());
-        return "vistas/editarLicenciado";
+        Licenciado licenciado = licenciadoService.getLicenciadoById(id); // Obtiene el licenciado por ID
+        model.addAttribute("licenciado", licenciado); // Agrega el licenciado al modelo
+        model.addAttribute("tipos", licenciadoService.getAllTipos()); // Agrega los tipos al modelo
+        model.addAttribute("decadas", licenciadoService.getAllDecadas()); // Agrega las décadas al modelo
+        return "vistas/editarLicenciado"; // Retorna la vista de edición de licenciado
     }
 
     // Procesa la actualización de un licenciado y redirige a la página principal de registro
     @PostMapping("/actualizarlicenciado")
     public String updateLicenciado(@ModelAttribute Licenciado licenciado) {
-        licenciadoService.updateLicenciado(licenciado);
-        return "redirect:/registrolicenciado";
+        licenciadoService.updateLicenciado(licenciado); // Actualiza el licenciado
+        return "redirect:/registrolicenciado"; // Redirige a la página de registro
     }
 }

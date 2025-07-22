@@ -4,6 +4,8 @@
     <head th:replace="~{componentes/invitado/head :: head}"></head>
     <link rel="stylesheet" th:href="@{/css/invitado/styleNoticias.css}">
     <link rel="stylesheet" th:href="@{/css/invitado/stylePostNoticia.css}">
+    <link rel="stylesheet" th:href="@{/css/invitado/styleHeader.css}">
+    <link rel="stylesheet" th:href="@{/css/invitado/stylePartidos.css}">
 </head>
 <body>
 
@@ -34,21 +36,8 @@
 
 </div>
 
-<footer>
-    <div class="footer-content">
-        <p>© 2023 Company Name, Inc. All rights reserved.</p>
-        <nav>
-            <a href="#">Privacidad</a>
-            <a href="#">Soporte</a>
-        </nav>
-        <div class="redes">
-            <a href="#"><img src="../youtube_logo.png" alt="YouTube"/></a>
-            <a href="#"><img src="../facebook_logo.png" alt="Facebook"/></a>
-            <a href="#"><img src="../instagram_logo.png" alt="Instagram"/></a>
-            <a href="#"><img src="../linkedin_logo.png" alt="LinkedIn"/></a>
-        </div>
-    </div>
-</footer>
+    <!-- PIE DE PÁGINA: Dividido en tres secciones -->
+    <footer th:replace="~{componentes/miembroMesa/footer :: footer}"></footer>
 
 </body>
 </html>

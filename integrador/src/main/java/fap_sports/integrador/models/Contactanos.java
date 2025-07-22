@@ -2,9 +2,11 @@ package fap_sports.integrador.models;
 
 import jakarta.persistence.*;
 
+// Clase que representa la entidad Contactanos en la base de datos
 @Entity
-@Table(name = "contactanos")
+@Table(name = "contactanos") // Especifica el nombre de la tabla en la base de datos
 public class Contactanos {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Generación automática de IDs autoincrementales
     @Column(name = "con_id") // Columna que representa el ID del contacto
@@ -19,12 +21,13 @@ public class Contactanos {
     @Column(name = "con_email") // Columna para el email
     private String conEmail;
 
-    @Column(name = "con_telefono") // Columna para almacenar el numero de telefono
+    @Column(name = "con_telefono") // Columna para almacenar el número de teléfono
     private String conTelefono;
 
     @Column(name = "con_mensaje") // Columna para almacenar el mensaje
-    private String conMensaje;
+    private String conMensaje; 
 
+    
     // Métodos get y set
 
     public Long getConId() {

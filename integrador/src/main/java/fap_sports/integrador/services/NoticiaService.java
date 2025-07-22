@@ -42,7 +42,15 @@ public class NoticiaService {
     }
     
     public List<Noticia> obtenerNoticiasPorTipo(String tipo) {
-    return noticiaRepository.findByNotTipo(tipo);
-}
+        return noticiaRepository.findByNotTipo(tipo);
+    }
+
+    public List<Noticia> obtenerTodasLasNoticias() {
+    return noticiaRepository.findAll();
+    }
+
+     public List<Noticia> obtenerUltimasNoticias(int cantidad) {
+        return noticiaRepository.findTopNByOrderByNotFechaCreacionDesc(cantidad);
+    }
 
 }

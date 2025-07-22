@@ -2,8 +2,9 @@ package fap_sports.integrador.models;
 
 import jakarta.persistence.*;
 
+// Clase que representa la entidad Decada en la base de datos
 @Entity
-@Table(name = "decadas")
+@Table(name = "decadas") // Especifica el nombre de la tabla en la base de datos
 public class Decada {
     // Identificador único de la década
     @Id
